@@ -26,6 +26,7 @@ import xyz.fokus.module.impl.pvp.CrosshairModule;
 import xyz.fokus.module.impl.pvp.FreelookModule;
 import xyz.fokus.module.impl.pvp.HitSoundsModule;
 import xyz.fokus.module.impl.pvp.HitmarkerModule;
+import xyz.fokus.module.impl.pvp.StaticFovModule;
 import xyz.fokus.module.impl.pvp.NoHurtCamModule;
 import xyz.fokus.module.impl.pvp.ToggleSneakModule;
 import xyz.fokus.module.impl.pvp.ToggleSprintModule;
@@ -57,6 +58,7 @@ public final class Modules {
         register(new ToggleSneakModule());
         register(new ZoomModule());
         register(new FreelookModule());
+        register(new StaticFovModule());
         register(new CrosshairModule());
         register(new HitSoundsModule());
         register(new HitmarkerModule());

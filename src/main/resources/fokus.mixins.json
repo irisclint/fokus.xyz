@@ -35,6 +35,7 @@
     "MouseHandlerMixin",
     "PauseScreenMixin",
     "SkyMixin",
+    "StaticFovMixin",
     "SwingDurationLegacyMixin",
     "SwingDurationMixin",
     "TotemCounterMixin",

@@ -983,7 +983,15 @@ public final class Lang {
             "Die Linie um den anvisierten Block in eigener Farbe und Breite.",
             "The line around the block you look at, in your colour and width.",
             "Linienbreite",
-            "Line width"
+            "Line width",
+            "Festes Sichtfeld",
+            "Static FOV",
+            "Kein Zoomen beim Sprinten, mit Schnelligkeit oder Langsamkeit.",
+            "No zooming when sprinting or with speed or slowness.",
+            "Bogen-Zoom behalten",
+            "Keep the bow zoom",
+            "Fernrohr behalten",
+            "Keep the spyglass"
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {
