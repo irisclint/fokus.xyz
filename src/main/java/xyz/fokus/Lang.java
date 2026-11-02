@@ -1176,6 +1176,8 @@ public final class Lang {
             "Words (comma separated)",
             "Nur ganze Wörter",
             "Whole words only",
+            "Eigener Text",
+            "Own text"
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {
