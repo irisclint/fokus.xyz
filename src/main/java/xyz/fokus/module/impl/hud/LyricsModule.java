@@ -89,8 +89,16 @@ public class LyricsModule extends HudModule {
                 this.slide.snap(1.0F);
             }
 
-            String current = index >= 0 ? lines.get(index).text() : "";
-            String upcoming = index + 1 < lines.size() ? lines.get(index + 1).text() : "";
+            // Lines that only mark an instrumental ("♪") show as the breathing notes, and the preview
+            // skips them for the next sung line.
+            String current = index >= 0 && !instrumental(lines.get(index).text()) ? lines.get(index).text() : "";
+            String upcoming = "";
+            for (int k = index + 1; k < lines.size(); k++) {
+                if (!instrumental(lines.get(k).text())) {
+                    upcoming = lines.get(k).text();
+                    break;
+                }
+            }
             float progress = 1.0F;
             if (index >= 0) {
                 long start = lines.get(index).ms();
@@ -98,7 +106,8 @@ public class LyricsModule extends HudModule {
                 long sung = sungFor(current, end - start);
                 progress = Math.max(0.0F, Math.min(1.0F, (float)(now - start) / (float)sung));
                 // A long instrumental after the line: the line goes, the notes and the next line show.
-                boolean pause = now - start > sung + PAUSE_AFTER && end - now > PAUSE_BEFORE;
+                long pauseFrom = start + sung + PAUSE_AFTER;
+                boolean pause = !current.isEmpty() && now > pauseFrom && end - pauseFrom > PAUSE_BEFORE;
                 if (pause) {
                     current = "";
                 }
@@ -115,8 +124,13 @@ public class LyricsModule extends HudModule {
 
     /** How long after a line has been sung it stays before an instrumental pause takes over. */
     private static final long PAUSE_AFTER = 3000L;
-    /** The pause shows only while the next line is at least this far away. */
+    /** The pause shows only when it lasts at least this long; a shorter gap keeps the line. */
     private static final long PAUSE_BEFORE = 1500L;
+
+    /** A line with nothing to sing: empty, or only music symbols. */
+    static boolean instrumental(String text) {
+        return text.replaceAll("[\\s\u2669\u266a\u266b\u266c\\x{1F3B5}\\x{1F3B6}]", "").isEmpty();
+    }
 
     /**
      * How long the line is sung: the time to the next line, but no longer than its text takes to sing -
