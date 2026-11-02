@@ -1,0 +1,59 @@
+fokus.xyz  -  PvP-Mod für Minecraft 26.1, 26.2 und 26.3
+https://flexbio.link/1
+==========================================================
+
+DEUTSCH
+-------
+1. fokus.xyz.jar in den "mods"-Ordner deines Minecraft ziehen. Fertig.
+
+   Der mods-Ordner liegt je nach Launcher hier:
+   - Iris Client:        %APPDATA%\.irisclient\instances\<Instanz>\mods
+   - Minecraft Launcher: %APPDATA%\.minecraft\mods   (vorher einmal Fabric installieren:
+                         https://fabricmc.net/use/installer/)
+   - Prism / MultiMC:    Instanz > Mods > "Datei hinzufügen"
+   - Modrinth App, CurseForge, Feather: Profil öffnen > Mods > Datei hineinziehen
+
+   Läuft mit jedem Launcher/Client, der Fabric-Mods lädt. Fabric API wird NICHT gebraucht.
+   Den Dateinamen bitte nicht ändern.
+
+2. Im Spiel: ESC drücken > Knopf "fokus.xyz". Oder die rechte Strg-Taste.
+
+Updates kommen automatisch: Beim Start schaut die Mod, ob es eine neue Version gibt, lädt sie im
+Hintergrund und installiert sie, wenn du Minecraft schließt. Abschalten:
+Einstellungen > Oberfläche > Automatische Updates.
+
+Lyrics / Now Playing: zeigt, was in Spotify, Apple Music oder im Browser (YouTube, YouTube Music,
+SoundCloud, Twitch, Kick) läuft - über die Windows-Mediensteuerung. Liedtexte kommen von
+lrclib.net (es werden nur Titel, Künstler und Länge des Songs abgefragt).
+
+Lyrics am Himmel: HUD > Lyrics > Ort ("Himmel - folgt dem Blick", "Himmel - fest" oder "Bildschirm").
+Now Playing kann genauso an den Himmel (HUD > Now Playing > Ort). Auf dem Bildschirm zeigen beide
+das Cover. Erkannt wird jede App und jede Seite im Browser, die Musik oder Video abspielt.
+
+Dein Setup an Freunde schicken: Einstellungen > Profile & Teilen > "Einstellungen kopieren",
+den Text verschicken; der Freund kopiert ihn und drückt "Geteilte Einstellungen einfügen".
+
+Better Items / Totems: Visuals > Better Items - Stil pro Gruppe (Schwerter, Rüstung, Elytra, ...)
+oder eine Vorlage für alles; "Texturen übernehmen" legt ein Resource Pack "fokus.xyz" an und
+schaltet es ein. Zurück zu normal: Vorlage "Vanilla" oder das Modul ausschalten und übernehmen.
+
+
+ENGLISH
+-------
+1. Drop fokus.xyz.jar into your Minecraft "mods" folder. Done.
+   Works with every launcher/client that loads Fabric mods (Iris Client, Prism, MultiMC,
+   Modrinth App, CurseForge, Feather, the Minecraft Launcher with Fabric). No Fabric API needed.
+   Please keep the file name.
+
+2. In game: press ESC > "fokus.xyz" button, or Right Ctrl.
+   Language: Settings > Interface > Language (English / Deutsch).
+
+Lyrics in the sky: HUD > Lyrics > Place (follows your view, fixed, or on screen).
+Share your setup: Settings > Profiles & sharing > "Copy settings", send the text; your friend
+copies it and presses "Paste shared settings".
+Better Items: Visuals > Better Items - a style per group (swords, armour, elytra, ...) or one
+preset for everything; "Apply textures" writes and switches on a resource pack "fokus.xyz".
+
+Updates install themselves: on start the mod checks for a new version, downloads it in the
+background and switches to it when you close Minecraft. Turn off under
+Settings > Interface > Automatic updates.

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "fokus",
+  "version": "${version}",
+  "name": "Fokus",
+  "description": "PvP-Mod mit eigenem Menü (ESC → Fokus): HUD, Custom Crosshair, Zoom, Schwung- und Item-Animationen und mehr.",
+  "authors": [
+    "lenna"
+  ],
+  "contact": {
+    "homepage": "https://flexbio.link/1"
+  },
+  "license": "MIT",
+  "icon": "assets/fokus/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "xyz.fokus.FokusMod"
+    ]
+  },
+  "mixins": [
+    "fokus.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.0",
+    "minecraft": ">=26.1 <26.4",
+    "java": ">=25"
+  }
+}

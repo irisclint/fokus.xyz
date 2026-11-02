@@ -1,0 +1,41 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "xyz.fokus.mixin",
+  "plugin": "xyz.fokus.mixin.FokusMixinPlugin",
+  "injectors": {
+    "defaultRequire": 0
+  },
+  "client": [
+    "CameraMixin",
+    "ClearViewGuiMixin",
+    "ClearViewHudMixin",
+    "CloudColorLegacyMixin",
+    "CloudColorMixin",
+    "ContainerOpenMixin",
+    "CrystalModelMixin",
+    "CrystalRendererMixin",
+    "FireOverlayLegacyMixin",
+    "FireOverlayMixin",
+    "FogMixin",
+    "FreelookCameraMixin",
+    "FreelookTurnMixin",
+    "GameModeMixin",
+    "GameRendererMixin",
+    "GuiHudMixin",
+    "HandsRendererMixin",
+    "HudMixin",
+    "ItemInHandRendererMixin",
+    "LightmapMixin",
+    "MinecraftMixin",
+    "MouseHandlerMixin",
+    "PauseScreenMixin",
+    "SkyMixin",
+    "SwingDurationLegacyMixin",
+    "SwingDurationMixin",
+    "TotemCounterMixin",
+    "TotemParticleMixin",
+    "TotemPopMixin",
+    "WeatherMixin"
+  ]
+}
