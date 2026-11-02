@@ -1112,6 +1112,18 @@ public final class Lang {
             "No explosion particles",
             "Totem-Partikel aus",
             "No totem particles",
+            "Wegpunkt",
+            "Waypoint",
+            "Markiert einen Ort per Taste und zeigt Richtung und Entfernung dorthin.",
+            "Marks a place with a key and shows the direction and distance to it.",
+            "Wegpunkt-Taste",
+            "Waypoint key",
+            "Koordinaten zeigen",
+            "Show coordinates",
+            "Wegpunkt gesetzt",
+            "Waypoint set",
+            "Wegpunkt gelöscht",
+            "Waypoint cleared",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

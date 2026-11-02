@@ -11,11 +11,10 @@ import xyz.fokus.compat.Compat;
 import xyz.fokus.module.HudModule;
 import xyz.fokus.module.Modules;
 import xyz.fokus.setting.BoolSetting;
+import xyz.fokus.util.Pointer;
 
 /** Where you last died: in the chat the moment it happens, and on screen as direction and distance. */
 public class DeathPointModule extends HudModule {
-    private static final String[] ARROWS = {"↑", "↗", "→", "↘", "↓", "↙", "←", "↖"};
-
     public final BoolSetting chat = this.add(new BoolSetting("Im Chat melden", true));
     public final BoolSetting clearOnReach = this.add(new BoolSetting("Löschen wenn erreicht", true));
 
@@ -73,18 +72,11 @@ public class DeathPointModule extends HudModule {
     }
 
     private double distance(LocalPlayer p) {
-        double dx = this.x + 0.5 - p.getX();
-        double dz = this.z + 0.5 - p.getZ();
-        return Math.sqrt(dx * dx + dz * dz);
+        return Pointer.distance(p, this.x, this.z);
     }
 
     private static String dimensionName(String path) {
-        return switch (path) {
-            case "overworld" -> Lang.t("Oberwelt");
-            case "the_nether" -> "Nether";
-            case "the_end" -> "End";
-            default -> path;
-        };
+        return Pointer.dimensionName(path);
     }
 
     @Override
@@ -104,12 +96,6 @@ public class DeathPointModule extends HudModule {
             this.labelValue(g, font, Lang.t("Tod"), dimensionName(this.dimension));
             return;
         }
-        double dx = this.x + 0.5 - p.getX();
-        double dz = this.z + 0.5 - p.getZ();
-        // The direction to the point, relative to where the player looks: 0 = straight ahead.
-        float target = (float) Math.toDegrees(Math.atan2(-dx, dz));
-        float relative = Mth.wrapDegrees(target - p.getYRot());
-        String arrow = ARROWS[Math.floorMod(Math.round(relative / 45.0F), 8)];
-        this.labelValue(g, font, Lang.t("Tod"), arrow + " " + Math.round(this.distance(p)) + " m");
+        this.labelValue(g, font, Lang.t("Tod"), Pointer.toward(p, this.x, this.z));
     }
 }

@@ -30,6 +30,7 @@ import xyz.fokus.module.impl.hud.SimpleHudModules;
 import xyz.fokus.module.impl.hud.TabPingModule;
 import xyz.fokus.module.impl.hud.TargetHudModule;
 import xyz.fokus.module.impl.hud.TotemPopsModule;
+import xyz.fokus.module.impl.hud.WaypointModule;
 import xyz.fokus.module.impl.hud.WatermarkModule;
 import xyz.fokus.module.impl.pvp.CrosshairModule;
 import xyz.fokus.module.impl.pvp.FreelookModule;
@@ -105,6 +106,7 @@ public final class Modules {
         register(new TabPingModule());
         register(new MoreHudModules.Compass());
         register(new DeathPointModule());
+        register(new WaypointModule());
         register(new MoreHudModules.NearbyPlayers());
         register(new MoreHudModules.Hunger());
         register(new MoreHudModules.ArmorWarning());
