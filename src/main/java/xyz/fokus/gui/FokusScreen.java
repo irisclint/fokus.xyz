@@ -51,6 +51,13 @@ public class FokusScreen extends Screen {
     private final Anim scroll = new Anim(0.0F, 16.0F);
     private float scrollTarget;
     private float maxScroll;
+    /** The scrollbar as last drawn, for clicks and drags. */
+    private float trackX;
+    private float thumbY;
+    private float thumbH;
+    private boolean scrollDragging;
+    private float scrollGrab;
+    private final Anim thumbHover = new Anim(0.0F, 16.0F);
     private String search = "";
     private boolean searchFocus;
     private NumberSetting dragging;
@@ -390,12 +397,32 @@ public class FokusScreen extends Screen {
         }
 
         if (this.maxScroll > 0.0F) {
-            float trackX = this.cx + this.cw + 4.0F;
             float trackH = this.cb - this.ct;
-            float thumbH = Math.max(18.0F, trackH * trackH / (trackH + this.maxScroll));
-            float thumbY = this.ct + (trackH - thumbH) * Math.min(1.0F, this.scroll.get() / this.maxScroll);
-            R2D.round(g, trackX, thumbY, 1.5F, thumbH, 0.75F, Colors.alpha(1358954495, a));
+            this.trackX = this.cx + this.cw + 3.0F;
+            this.thumbH = Math.max(18.0F, trackH * trackH / (trackH + this.maxScroll));
+            this.thumbY = this.ct + (trackH - this.thumbH) * Math.min(1.0F, this.scroll.get() / this.maxScroll);
+            boolean overBar = this.overScrollbar(mx, my);
+            float hv = this.thumbHover.to(overBar || this.scrollDragging ? 1.0F : 0.0F).get();
+            float w = 2.0F + hv * 1.5F;
+            R2D.round(g, this.trackX, this.ct, w, trackH, w / 2.0F, Colors.alpha(0x10FFFFFF, a * hv));
+            R2D.round(g, this.trackX, this.thumbY, w, this.thumbH, w / 2.0F,
+                    Colors.alpha(Colors.lerp(0x50FFFFFF, 0xB0FFFFFF, hv), a));
         }
+    }
+
+    /** The scrollbar's strip, a little wider than drawn so it is easy to grab. */
+    private boolean overScrollbar(float mx, float my) {
+        return this.maxScroll > 0.0F && mx >= this.trackX - 3.0F && mx <= this.trackX + 7.0F && my >= this.ct
+                && my <= this.cb;
+    }
+
+    /** Scrolls so the thumb's top sits at {@code top} (GUI units). */
+    private void dragThumbTo(float top) {
+        float room = this.cb - this.ct - this.thumbH;
+        float f = room <= 0.0F ? 0.0F : (top - this.ct) / room;
+        this.scrollTarget = Math.max(0.0F, Math.min(1.0F, f)) * this.maxScroll;
+        // Follow the pointer at once while dragging, not with the soft scroll.
+        this.scroll.snap(this.scrollTarget);
     }
 
     private float cardHeight(Module m) {
@@ -737,6 +764,16 @@ public class FokusScreen extends Screen {
             int b = button(event);
             this.listening = null;
             this.searchFocus = false;
+            if (b == 0 && this.overScrollbar(mx, my)) {
+                this.scrollDragging = true;
+                boolean onThumb = my >= this.thumbY && my <= this.thumbY + this.thumbH;
+                this.scrollGrab = onThumb ? my - this.thumbY : this.thumbH / 2.0F;
+                if (!onThumb) {
+                    this.dragThumbTo(my - this.scrollGrab);
+                }
+                return true;
+            }
+
             boolean inContent = R2D.inside(mx, my, this.cx - 4.0F, this.ct, this.cw + 10.0F, this.cb - this.ct);
 
             for (int i = this.hits.size() - 1; i >= 0; i--) {
@@ -757,6 +794,7 @@ public class FokusScreen extends Screen {
 
     @Override
     public boolean mouseReleased(MouseButtonEvent event) {
+        this.scrollDragging = false;
         if (this.dragging != null || this.hueDragging != null) {
             this.dragging = null;
             this.hueDragging = null;
@@ -769,6 +807,10 @@ public class FokusScreen extends Screen {
     @Override
     public boolean mouseDragged(MouseButtonEvent event, double dx, double dy) {
         float mx = this.localX(event.x());
+        if (this.scrollDragging) {
+            this.dragThumbTo(this.localY(event.y()) - this.scrollGrab);
+            return true;
+        }
         if (this.dragging != null) {
             this.dragging.setProgress((mx - this.dragX) / this.dragW);
         } else if (this.hueDragging != null) {
@@ -780,7 +822,9 @@ public class FokusScreen extends Screen {
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
-        this.scrollTarget = Math.max(0.0F, Math.min(this.maxScroll, this.scrollTarget - (float)scrollY * 30.0F));
+        float steps = (float)Math.max(-2.0, Math.min(2.0, scrollY));
+        float step = 14.0F * Theme.scrollSpeed();
+        this.scrollTarget = Math.max(0.0F, Math.min(this.maxScroll, this.scrollTarget - steps * step));
         return true;
     }
 

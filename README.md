@@ -29,7 +29,8 @@ Einstellungen, Mittelklick Taste belegen, einfach lostippen zum Suchen. Englisch
   jede Seite im Browser, Titel und Liedtexte in jeder Sprache (lrclib.net, NetEase).
 - **Animationen:** Schwung-Stile, Blockhit, Item-Ansicht pro Item-Art, Wechsel- und
   Inventar-Animation.
-- **Visuals:** End-Kristalle, Totems, Better Items (17 Gruppen, 14 Stile), Himmel (Farben, Wolken,
+- **Visuals:** Item-Aura (Leuchten mit Farbverlauf um Totems, Perlen & Co. – in Hotbar, Inventar und Welt),
+  End-Kristalle, Totems, Better Items (17 Gruppen, 14 Stile), Himmel (Farben, Wolken,
   Mond, Tag & Nacht), Klares Wetter, Klare Sicht, Fullbright, Low Fire.
 - **Profile & Teilen:** drei Setups; das eigene Setup als Text an Freunde schicken.
 

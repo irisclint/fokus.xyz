@@ -22,6 +22,7 @@ public class InterfaceModule extends Module {
     public final KeySetting menuKey = this.add(new KeySetting("Menü-Taste", Compat.key("KEY_RCONTROL")));
     public final NumberSetting menuScale = this.add(new NumberSetting("Menügröße", 1.0, 0.8, 1.25, 0.05, "x"));
     public final NumberSetting animSpeed = this.add(new NumberSetting("Animationstempo", 1.0, 0.5, 2.0, 0.1, "x"));
+    public final NumberSetting scrollSpeed = this.add(new NumberSetting("Scrolltempo", 1.0, 0.3, 2.5, 0.1, "x"));
     public final BoolSetting blur = this.add(new BoolSetting("Unschärfe hinter dem Menü", true));
     public final BoolSetting clickSound = this.add(new BoolSetting("Klickgeräusch im Menü", true));
     public final ModeSetting hudStyle = this.add(new ModeSetting("HUD-Stil", "Glas", "Glas", "Solide", "Ohne"));

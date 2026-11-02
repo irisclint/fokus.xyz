@@ -176,22 +176,42 @@ public class LyricsModule extends HudModule {
         if (!v.current.isEmpty()) {
             float ly = y + sl * 8.0F;
             float la = a * (1.0F - sl * 0.7F);
-            String line = R2D.trim(font, v.current, 360.0F, big);
-            left = Math.min(left, cx - R2D.width(font, line) * big / 2.0F);
-            if (this.glow.on()) {
-                int halo = Colors.alpha(white, la * 0.12F);
-
-                for (float[] o : new float[][]{{-1.0F, 0.0F}, {1.0F, 0.0F}, {0.0F, -1.0F}, {0.0F, 1.0F}}) {
-                    R2D.textCentered(g, font, line, cx + o[0], ly + o[1], big, halo, false);
+            // A long line wraps onto a second one instead of being cut off.
+            java.util.List<String> rows = wrap(font, v.current, 300.0F, big);
+            boolean karaoke = this.style.is("Karaoke") && !R2D.rightToLeft(v.current);
+            int total = 0;
+            for (String row : rows) {
+                total += row.length();
+            }
+            int before = 0;
+            for (String row : rows) {
+                left = Math.min(left, cx - R2D.width(font, row) * big / 2.0F);
+                if (this.glow.on()) {
+                    int halo = Colors.alpha(white, la * 0.12F);
+                    for (float[] o : new float[][]{{-1.0F, 0.0F}, {1.0F, 0.0F}, {0.0F, -1.0F}, {0.0F, 1.0F}}) {
+                        R2D.textCentered(g, font, row, cx + o[0], ly + o[1], big, halo, false);
+                    }
                 }
+                if (karaoke) {
+                    karaoke(g, font, row, cx, ly, big, v.progress, before, total, Colors.alpha(white, la),
+                            Colors.alpha(gray, la));
+                } else {
+                    R2D.textCentered(g, font, row, cx, ly, big, Colors.alpha(white, la), true);
+                }
+                before += row.length();
+                ly += 9.0F * big + 1.0F;
+                y += 9.0F * big + 1.0F;
             }
-
-            if (this.style.is("Karaoke") && !R2D.rightToLeft(line)) {
-                karaoke(g, font, line, cx, ly, big, v.progress, Colors.alpha(white, la), Colors.alpha(gray, la));
-            } else {
-                R2D.textCentered(g, font, line, cx, ly, big, Colors.alpha(white, la), true);
+            y += 2.0F;
+        } else if (!v.loading && !v.none && v.playing) {
+            // Between sung lines: three notes breathing one after another.
+            long now = System.currentTimeMillis();
+            float step = 7.0F * big;
+            for (int i = 0; i < 3; i++) {
+                float pulse = (float) (Math.sin(now / 260.0 - i * 0.9) * 0.5 + 0.5);
+                R2D.textCentered(g, font, "♪", cx + (i - 1) * step, y - pulse * 1.5F, big,
+                        Colors.alpha(gray, a * (0.35F + pulse * 0.55F)), true);
             }
-
             y += 9.0F * big + 3.0F;
         } else if (v.loading) {
             R2D.textCentered(g, font, "…", cx, y, big, Colors.alpha(gray, a), true);
@@ -212,17 +232,45 @@ public class LyricsModule extends HudModule {
         return left;
     }
 
-    private static void karaoke(GuiGraphicsExtractor g, Font font, String line, float cx, float y, float scale, float progress, int lit, int dim) {
+    private static void karaoke(GuiGraphicsExtractor g, Font font, String line, float cx, float y, float scale,
+            float progress, int before, int total, int lit, int dim) {
+        // Lit by letters, not by words: a long word takes longer to sing than a short one.
         String[] words = line.split(" ");
-        float total = R2D.width(font, line) * scale;
-        float x = cx - total / 2.0F;
-        int litCount = (int)Math.ceil(progress * words.length * 1.1F);
-
+        float x = cx - R2D.width(font, line) * scale / 2.0F;
+        float litChars = progress * total * 1.05F - before;
+        int done = 0;
         for (int i = 0; i < words.length; i++) {
             String w = i < words.length - 1 ? words[i] + " " : words[i];
-            R2D.text(g, font, w, x, y, scale, i < litCount ? lit : dim, true);
+            done += w.length();
+            R2D.text(g, font, w, x, y, scale, done - w.length() / 2.0F <= litChars ? lit : dim, true);
             x += R2D.width(font, w) * scale;
         }
+    }
+
+    /** {@code text} broken into at most two rows that fit {@code maxWidth}; the rest ends in "…". */
+    private static java.util.List<String> wrap(Font font, String text, float maxWidth, float scale) {
+        java.util.List<String> rows = new java.util.ArrayList<>();
+        if (R2D.width(font, text) * scale <= maxWidth) {
+            rows.add(text);
+            return rows;
+        }
+        StringBuilder row = new StringBuilder();
+        String[] words = text.split(" ");
+        int i = 0;
+        for (; i < words.length; i++) {
+            String next = row.length() == 0 ? words[i] : row + " " + words[i];
+            if (row.length() > 0 && R2D.width(font, next) * scale > maxWidth) {
+                break;
+            }
+            row.setLength(0);
+            row.append(next);
+        }
+        rows.add(R2D.trim(font, row.toString(), maxWidth, scale));
+        if (i < words.length) {
+            rows.add(R2D.trim(font, String.join(" ", java.util.Arrays.copyOfRange(words, i, words.length)), maxWidth,
+                    scale));
+        }
+        return rows;
     }
 
     private record View(String title, String current, String upcoming, float progress, boolean playing, boolean loading, boolean none) {

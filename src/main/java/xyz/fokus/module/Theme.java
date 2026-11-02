@@ -40,6 +40,10 @@ public final class Theme {
         return ui().hudRadius.f();
     }
 
+    public static float scrollSpeed() {
+        return ui().scrollSpeed.f();
+    }
+
     public static float menuScale() {
         return ui().menuScale.f();
     }

@@ -35,6 +35,7 @@ import xyz.fokus.module.impl.settings.ProfilesModule;
 import xyz.fokus.module.impl.visual.ClearViewModule;
 import xyz.fokus.module.impl.visual.ClearWeatherModule;
 import xyz.fokus.module.impl.visual.CrystalModule;
+import xyz.fokus.module.impl.visual.ItemAuraModule;
 import xyz.fokus.module.impl.visual.FullbrightModule;
 import xyz.fokus.module.impl.visual.LowFireModule;
 import xyz.fokus.module.impl.visual.NoBobModule;
@@ -100,6 +101,7 @@ public final class Modules {
         register(new LowFireModule());
         register(new CrystalModule());
         register(new TotemModule());
+        register(new ItemAuraModule());
         register(new TexturesModule());
         register(new SkyModule());
         register(new ClearWeatherModule());

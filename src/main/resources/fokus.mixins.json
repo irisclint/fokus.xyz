@@ -25,6 +25,8 @@
     "GuiHudMixin",
     "HandsRendererMixin",
     "HudMixin",
+    "ItemAuraGuiMixin",
+    "ItemAuraWorldMixin",
     "ItemInHandRendererMixin",
     "LightmapMixin",
     "MinecraftMixin",
