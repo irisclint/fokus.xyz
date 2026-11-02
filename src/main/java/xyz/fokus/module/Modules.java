@@ -29,6 +29,7 @@ import xyz.fokus.module.impl.pvp.CrosshairModule;
 import xyz.fokus.module.impl.pvp.FreelookModule;
 import xyz.fokus.module.impl.pvp.HitSoundsModule;
 import xyz.fokus.module.impl.pvp.HitmarkerModule;
+import xyz.fokus.module.impl.pvp.NametagHealthModule;
 import xyz.fokus.module.impl.pvp.StaticFovModule;
 import xyz.fokus.module.impl.pvp.NoHurtCamModule;
 import xyz.fokus.module.impl.pvp.ToggleSneakModule;
@@ -65,6 +66,7 @@ public final class Modules {
         register(new CrosshairModule());
         register(new HitSoundsModule());
         register(new HitmarkerModule());
+        register(new NametagHealthModule());
         register(new NoHurtCamModule());
         register(new WatermarkModule());
         register(new ModuleListModule());

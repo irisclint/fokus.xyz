@@ -19,7 +19,7 @@ Einstellungen, Mittelklick Taste belegen, einfach lostippen zum Suchen. Englisch
 
 ## Was drin ist
 
-- **PvP:** Toggle Sprint/Sneak, Zoom, Freelook, Festes Sichtfeld, Custom Crosshair (12 Stile, pixelgenau), Hitmarker,
+- **PvP:** Toggle Sprint/Sneak, Zoom, Freelook, Festes Sichtfeld, Custom Crosshair (12 Stile, pixelgenau), Leben im Namen, Hitmarker,
   Hit Sounds, No Hurt Cam.
 - **HUD (über 30 Teile):** Wasserzeichen, FPS, CPS, Ping, Koordinaten, Uhr, Speed, Server,
   Keystrokes, Rüstung, Effekte, Target HUD, Combo, Reach, Item-Zähler, Totem Pops, Cooldowns,

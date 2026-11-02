@@ -1017,7 +1017,19 @@ public final class Lang {
             "Mit „ms“",
             "With “ms”",
             "Nach Ping färben",
-            "Colour by ping"
+            "Colour by ping",
+            "Leben im Namen",
+            "Nametag health",
+            "Das Leben jedes Spielers hinter dem Namen über dem Kopf.",
+            "Every player's health after the name above their head.",
+            "Herzen",
+            "Hearts",
+            "Lebenspunkte",
+            "Health points",
+            "Absorption mitzählen",
+            "Count absorption",
+            "Auch bei Mobs",
+            "Mobs too"
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {
