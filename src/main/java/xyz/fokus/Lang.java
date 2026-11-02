@@ -1080,6 +1080,14 @@ public final class Lang {
             "Only your hits",
             "Heilung zeigen",
             "Show healing",
+            "Bogen-Anzeige",
+            "Bow charge",
+            "Ein Balken unter dem Fadenkreuz: wie weit Bogen, Armbrust oder Dreizack gespannt sind.",
+            "A bar under the crosshair: how far a bow, crossbow or trident is drawn.",
+            "Prozent zeigen",
+            "Show percent",
+            "Farbe wenn voll",
+            "Colour when full",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

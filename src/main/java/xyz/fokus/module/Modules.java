@@ -11,6 +11,7 @@ import xyz.fokus.module.impl.anim.InventoryAnimModule;
 import xyz.fokus.module.impl.anim.ItemViewModule;
 import xyz.fokus.module.impl.anim.SwingModule;
 import xyz.fokus.module.impl.hud.ArmorModule;
+import xyz.fokus.module.impl.hud.BowChargeModule;
 import xyz.fokus.module.impl.hud.ChatStackModule;
 import xyz.fokus.module.impl.hud.ChatTimestampModule;
 import xyz.fokus.module.impl.hud.CombatTimerModule;
@@ -90,6 +91,7 @@ public final class Modules {
         register(new CombatTimerModule());
         register(new SessionStatsModule());
         register(new DamageNumbersModule());
+        register(new BowChargeModule());
         register(new SimpleHudModules.Combo());
         register(new SimpleHudModules.Reach());
         register(new ItemCounterModule());
