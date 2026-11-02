@@ -1072,6 +1072,14 @@ public final class Lang {
             "Show K/D",
             "Session",
             "Session",
+            "Schadenszahlen",
+            "Damage numbers",
+            "Der Schaden jedes Treffers steigt als Zahl über dem Getroffenen auf.",
+            "The damage of every hit rises as a number above whoever was hit.",
+            "Nur deine Treffer",
+            "Only your hits",
+            "Heilung zeigen",
+            "Show healing",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {
