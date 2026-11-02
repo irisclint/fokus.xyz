@@ -32,6 +32,7 @@ import xyz.fokus.module.impl.pvp.ToggleSprintModule;
 import xyz.fokus.module.impl.pvp.ZoomModule;
 import xyz.fokus.module.impl.settings.InterfaceModule;
 import xyz.fokus.module.impl.settings.ProfilesModule;
+import xyz.fokus.module.impl.visual.BlockOutlineModule;
 import xyz.fokus.module.impl.visual.ClearViewModule;
 import xyz.fokus.module.impl.visual.ClearWeatherModule;
 import xyz.fokus.module.impl.visual.CrystalModule;
@@ -106,6 +107,7 @@ public final class Modules {
         register(new SkyModule());
         register(new ClearWeatherModule());
         register(new ClearViewModule());
+        register(new BlockOutlineModule());
         register(new InterfaceModule());
         register(new ProfilesModule());
     }

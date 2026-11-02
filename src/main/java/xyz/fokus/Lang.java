@@ -977,7 +977,13 @@ public final class Lang {
             "Pulsieren",
             "Pulse",
             "Fließend",
-            "Flowing"
+            "Flowing",
+            "Block-Umrandung",
+            "Block outline",
+            "Die Linie um den anvisierten Block in eigener Farbe und Breite.",
+            "The line around the block you look at, in your colour and width.",
+            "Linienbreite",
+            "Line width"
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

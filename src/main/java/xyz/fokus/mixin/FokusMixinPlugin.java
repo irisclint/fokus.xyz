@@ -13,23 +13,21 @@ import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 public class FokusMixinPlugin implements IMixinConfigPlugin {
-    private static final Map<String, String> NEEDS = Map.of(
-        "GuiHudMixin",
-        "extractCrosshair",
-        "SwingDurationLegacyMixin",
-        "getCurrentSwingDuration",
-        "SwingDurationMixin",
-        "getModifiedSwingDuration",
-        "FireOverlayLegacyMixin",
-        "renderFire",
-        "FireOverlayMixin",
-        "submitFire",
-        "ClearViewGuiMixin",
-        "extractVignette",
-        "CloudColorLegacyMixin",
-        "render(ILnet/minecraft/client/CloudStatus;FILnet/minecraft/world/phys/Vec3;JF)V",
-        "CloudColorMixin",
-        "prepare(ILnet/minecraft/client/CloudStatus;FILnet/minecraft/world/phys/Vec3;JF)V"
+    /**
+     * Mixins whose target method differs between versions: the method that must exist (with
+     * exactly that signature, when one is given). Map.ofEntries, not Map.of - Map.of stops at ten.
+     */
+    private static final Map<String, String> NEEDS = Map.ofEntries(
+        Map.entry("GuiHudMixin", "extractCrosshair"),
+        Map.entry("SwingDurationLegacyMixin", "getCurrentSwingDuration"),
+        Map.entry("SwingDurationMixin", "getModifiedSwingDuration"),
+        Map.entry("FireOverlayLegacyMixin", "renderFire"),
+        Map.entry("FireOverlayMixin", "submitFire"),
+        Map.entry("ClearViewGuiMixin", "extractVignette"),
+        Map.entry("BlockOutlineLegacyMixin", "renderHitOutline(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDLnet/minecraft/client/renderer/state/level/BlockOutlineRenderState;IF)V"),
+        Map.entry("BlockOutlineMixin", "submitHitOutline(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/rendertype/RenderType;Lnet/minecraft/client/renderer/state/level/BlockOutlineRenderState;IFZ)V"),
+        Map.entry("CloudColorLegacyMixin", "render(ILnet/minecraft/client/CloudStatus;FILnet/minecraft/world/phys/Vec3;JF)V"),
+        Map.entry("CloudColorMixin", "prepare(ILnet/minecraft/client/CloudStatus;FILnet/minecraft/world/phys/Vec3;JF)V")
     );
 
     public void onLoad(String mixinPackage) {
