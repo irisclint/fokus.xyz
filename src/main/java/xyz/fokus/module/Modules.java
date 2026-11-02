@@ -138,6 +138,28 @@ public final class Modules {
         register(new BlockOutlineModule());
         register(new InterfaceModule());
         register(new ProfilesModule());
+        for (Module m : all()) {
+            if (m.category == Category.HUD) {
+                m.group = "Info";
+            }
+        }
+        group("Kampf", TargetHudModule.class, TotemPopsModule.class, CombatTimerModule.class, SessionStatsModule.class,
+                DamageNumbersModule.class, BowChargeModule.class, LowHealthModule.class, SimpleHudModules.Combo.class,
+                SimpleHudModules.Reach.class, MoreHudModules.ArmorWarning.class, MoreHudModules.Cooldowns.class,
+                ArmorModule.class, PotionsModule.class, ItemCounterModule.class);
+        group("Musik & Chat", LyricsModule.class, NowPlayingModule.class, ChatTimestampModule.class, ChatStackModule.class,
+                TabPingModule.class);
+    }
+
+    /** Puts these modules under one heading in the menu; the HUD has grown too long for one list. */
+    private static void group(String name, Class<?>... types) {
+        for (Module m : all()) {
+            for (Class<?> t : types) {
+                if (t.isInstance(m)) {
+                    m.group = name;
+                }
+            }
+        }
     }
 
     private static void register(Module m) {

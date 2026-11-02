@@ -347,7 +347,7 @@ public class FokusScreen extends Screen {
             List<Module> out = new ArrayList<>();
 
             for (Module m : Modules.all()) {
-                if (matches(m.name, q) || matches(m.description, q) || matches(m.category.label, q)
+                if (matches(m.name, q) || matches(m.description, q) || matches(m.category.label, q) || matches(m.group, q)
                         || m.settings().stream().anyMatch(st -> matches(st.name, q))) {
                     out.add(m);
                 }
@@ -372,22 +372,42 @@ public class FokusScreen extends Screen {
         this.scroll.to(this.scrollTarget);
         float y = this.ct + 2.0F - this.scroll.get();
         Module hovered = null;
+        // Under headings when the category has groups and nothing is searched; one list otherwise.
+        java.util.Map<String, List<Module>> groups = new java.util.LinkedHashMap<>();
+        for (Module m : list) {
+            groups.computeIfAbsent(this.search.isEmpty() && m.group != null ? m.group : "", k -> new ArrayList<>()).add(m);
+        }
+        boolean headings = groups.size() > 1 || !groups.containsKey("");
+        int index = 0;
 
-        for (int i = 0; i < list.size(); i += cols) {
-            float rowH = 0.0F;
-
-            for (int c = 0; c < cols && i + c < list.size(); c++) {
-                rowH = Math.max(rowH, this.cardHeight(list.get(i + c)));
+        for (java.util.Map.Entry<String, List<Module>> group : groups.entrySet()) {
+            List<Module> part = group.getValue();
+            if (headings && !group.getKey().isEmpty()) {
+                float hy = y + 3.0F;
+                String title = Lang.t(group.getKey()).toUpperCase(java.util.Locale.ROOT);
+                R2D.text(g, this.font, title, this.cx + 2.0F, hy, 0.62F, Colors.alpha(-6052957, a), false);
+                float lineX = this.cx + 2.0F + R2D.width(this.font, title) * 0.62F + 6.0F;
+                R2D.rect(g, lineX, hy + 2.5F, this.cx + this.cw, hy + 3.0F, Colors.alpha(285212671, a));
+                y += 14.0F;
             }
 
-            for (int c = 0; c < cols && i + c < list.size(); c++) {
-                Module m = list.get(i + c);
-                if (this.drawCard(g, m, this.cx + c * (colW + gap), y, colW, i + c, mx, my, a, overContent)) {
-                    hovered = m;
+            for (int i = 0; i < part.size(); i += cols) {
+                float rowH = 0.0F;
+
+                for (int c = 0; c < cols && i + c < part.size(); c++) {
+                    rowH = Math.max(rowH, this.cardHeight(part.get(i + c)));
                 }
-            }
 
-            y += rowH + gap;
+                for (int c = 0; c < cols && i + c < part.size(); c++) {
+                    Module m = part.get(i + c);
+                    if (this.drawCard(g, m, this.cx + c * (colW + gap), y, colW, index + i + c, mx, my, a, overContent)) {
+                        hovered = m;
+                    }
+                }
+
+                y += rowH + gap;
+            }
+            index += part.size();
         }
 
         this.maxScroll = Math.max(0.0F, y + this.scroll.get() - this.ct - (this.cb - this.ct));

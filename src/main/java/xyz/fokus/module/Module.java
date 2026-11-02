@@ -13,6 +13,8 @@ public abstract class Module {
     public final String description;
     public final Category category;
     public final KeySetting bind = new KeySetting("Taste", -1);
+    /** The heading the module sits under in its category's list; null for none. */
+    public String group;
     /** Added by an update since the menu was last used; marked "NEU" until it is touched. */
     public boolean fresh;
     private final List<Setting<?>> settings = new ArrayList<>();

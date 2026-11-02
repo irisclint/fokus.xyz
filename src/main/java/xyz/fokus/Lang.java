@@ -1124,6 +1124,10 @@ public final class Lang {
             "Waypoint set",
             "Wegpunkt gelöscht",
             "Waypoint cleared",
+            "Info",
+            "Info",
+            "Musik & Chat",
+            "Music & chat",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {
