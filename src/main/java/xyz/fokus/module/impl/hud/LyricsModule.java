@@ -38,6 +38,7 @@ public class LyricsModule extends HudModule {
     private final Anim show = new Anim(0.0F, 6.0F);
     private final Anim slide = new Anim(0.0F, 9.0F);
     private int lastIndex = -1;
+    private boolean lastPause;
     private String lastSong = "";
     private final SkyAnchor anchor = new SkyAnchor();
 
@@ -84,6 +85,7 @@ public class LyricsModule extends HudModule {
 
             if (index != this.lastIndex) {
                 this.lastIndex = index;
+                this.lastPause = false;
                 this.slide.snap(1.0F);
             }
 
@@ -93,12 +95,45 @@ public class LyricsModule extends HudModule {
             if (index >= 0) {
                 long start = lines.get(index).ms();
                 long end = index + 1 < lines.size() ? lines.get(index + 1).ms() : start + 4000L;
-                progress = Math.max(0.0F, Math.min(1.0F, (float)(now - start) / (float)Math.max(1L, end - start)));
+                long sung = sungFor(current, end - start);
+                progress = Math.max(0.0F, Math.min(1.0F, (float)(now - start) / (float)sung));
+                // A long instrumental after the line: the line goes, the notes and the next line show.
+                boolean pause = now - start > sung + PAUSE_AFTER && end - now > PAUSE_BEFORE;
+                if (pause) {
+                    current = "";
+                }
+                if (pause != this.lastPause) {
+                    this.lastPause = pause;
+                    this.slide.snap(1.0F);
+                }
             }
 
             boolean loading = !track.live() && LyricsSource.loading();
             return new LyricsModule.View(song, current, upcoming, progress, track.playing(), loading, !loading && lines.isEmpty());
         }
+    }
+
+    /** How long after a line has been sung it stays before an instrumental pause takes over. */
+    private static final long PAUSE_AFTER = 3000L;
+    /** The pause shows only while the next line is at least this far away. */
+    private static final long PAUSE_BEFORE = 1500L;
+
+    /**
+     * How long the line is sung: the time to the next line, but no longer than its text takes to sing -
+     * otherwise the karaoke crawls through the silence before the next line.
+     */
+    static long sungFor(String text, long gap) {
+        long estimate = 400L;
+        for (int i = 0; i < text.length(); ) {
+            int cp = text.codePointAt(i);
+            i += Character.charCount(cp);
+            // In Chinese, Japanese and Korean one character is a whole syllable.
+            Character.UnicodeScript script = Character.UnicodeScript.of(cp);
+            boolean syllable = script == Character.UnicodeScript.HAN || script == Character.UnicodeScript.HIRAGANA
+                    || script == Character.UnicodeScript.KATAKANA || script == Character.UnicodeScript.HANGUL;
+            estimate += syllable ? 280L : 95L;
+        }
+        return Math.max(1L, Math.min(gap, Math.max(1200L, estimate)));
     }
 
     @Override
@@ -209,8 +244,8 @@ public class LyricsModule extends HudModule {
             float step = 7.0F * big;
             for (int i = 0; i < 3; i++) {
                 float pulse = (float) (Math.sin(now / 260.0 - i * 0.9) * 0.5 + 0.5);
-                R2D.textCentered(g, font, "♪", cx + (i - 1) * step, y - pulse * 1.5F, big,
-                        Colors.alpha(gray, a * (0.35F + pulse * 0.55F)), true);
+                R2D.textCentered(g, font, "♪", cx + (i - 1) * step, y - pulse * 1.5F + sl * 8.0F, big,
+                        Colors.alpha(gray, a * (1.0F - sl * 0.7F) * (0.35F + pulse * 0.55F)), true);
             }
             y += 9.0F * big + 3.0F;
         } else if (v.loading) {
