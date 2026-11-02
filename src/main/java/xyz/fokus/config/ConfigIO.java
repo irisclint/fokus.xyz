@@ -52,7 +52,9 @@ public final class ConfigIO {
         Path file = file();
         if (Files.exists(file)) {
             try {
-                apply(JsonParser.parseString(Files.readString(file, StandardCharsets.UTF_8)).getAsJsonObject());
+                JsonObject root = JsonParser.parseString(Files.readString(file, StandardCharsets.UTF_8)).getAsJsonObject();
+                apply(root);
+                markFresh(root);
             } catch (RuntimeException | IOException var2) {
                 FokusMod.LOG.error("fokus.xyz: could not read config, using defaults", var2);
             }
@@ -168,7 +170,32 @@ public final class ConfigIO {
     }
 
     public static void save() {
-        write(file(), toJson());
+        JsonObject root = toJson();
+        com.google.gson.JsonArray known = new com.google.gson.JsonArray();
+        for (Module m : Modules.all()) {
+            if (!m.fresh) {
+                known.add(m.name);
+            }
+        }
+        root.add("known", known);
+        write(file(), root);
+    }
+
+    /**
+     * Modules missing from the saved list came with an update. A config from before the list
+     * existed marks nothing: it cannot tell what is new.
+     */
+    private static void markFresh(JsonObject root) {
+        if (!root.has("known") || !root.get("known").isJsonArray()) {
+            return;
+        }
+        java.util.Set<String> known = new java.util.HashSet<>();
+        for (JsonElement e : root.getAsJsonArray("known")) {
+            known.add(e.getAsString());
+        }
+        for (Module m : Modules.all()) {
+            m.fresh = !known.contains(m.name);
+        }
     }
 
     private static void write(Path file, JsonObject root) {

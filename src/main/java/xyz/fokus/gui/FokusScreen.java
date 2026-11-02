@@ -480,6 +480,13 @@ public class FokusScreen extends Screen {
             R2D.roundEdge(g, x, yy, w, h, 6.0F, Colors.alpha(Colors.lerp(285212671, 587202559, Math.max(hv, tog * 0.6F)), ca));
             int nameColor = m.isAlwaysOn() ? -723724 : Colors.lerp(-3552823, -723724, tog);
             R2D.text(g, this.font, Lang.t(m.name), x + 9.0F, yy + 7.0F, 0.9F, Colors.alpha(nameColor, ca), false);
+            if (m.fresh) {
+                String badge = Lang.t("NEU");
+                float bx = x + 9.0F + R2D.width(this.font, Lang.t(m.name)) * 0.9F + 4.0F;
+                float bw = R2D.width(this.font, badge) * 0.5F + 6.0F;
+                R2D.round(g, bx, yy + 7.0F, bw, 7.0F, 3.5F, Colors.alpha(Theme.accent(0.0F), ca));
+                R2D.textCentered(g, this.font, badge, bx + bw / 2.0F, yy + 8.6F, 0.5F, Colors.alpha(-15856114, ca), false);
+            }
             R2D.text(
                 g, this.font, R2D.trim(this.font, Lang.t(m.description), w - 62.0F, 0.62F), x + 9.0F, yy + 17.5F, 0.62F, Colors.alpha(-10263709, ca), false
             );
@@ -517,6 +524,7 @@ public class FokusScreen extends Screen {
             }
 
             this.hits.add(new FokusScreen.Hit(x, yy, w, 28.0F, true, (b, x2, y2) -> {
+                this.seen(m);
                 if (b == 1) {
                     this.toggleExpand(m);
                 } else if (b == 2 && !m.isAlwaysOn()) {
@@ -558,7 +566,16 @@ public class FokusScreen extends Screen {
     }
 
     private void toggleExpand(Module m) {
+        this.seen(m);
         m.expandAnim.to(m.expandAnim.target() > 0.5F ? 0.0F : 1.0F);
+    }
+
+    /** Touching a new module takes its "NEU" away for good. */
+    private void seen(Module m) {
+        if (m.fresh) {
+            m.fresh = false;
+            ConfigIO.save();
+        }
     }
 
     private void drawSetting(GuiGraphicsExtractor g, Setting<?> s, float x, float y, float w, float a, float mx, float my, boolean interactive, Module owner) {

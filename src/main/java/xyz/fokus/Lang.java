@@ -1088,6 +1088,8 @@ public final class Lang {
             "Show percent",
             "Farbe wenn voll",
             "Colour when full",
+            "NEU",
+            "NEW"
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {
