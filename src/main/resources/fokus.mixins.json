@@ -36,6 +36,7 @@
     "MinecraftMixin",
     "MouseHandlerMixin",
     "NametagHealthMixin",
+    "OverlayTextureMixin",
     "PauseScreenMixin",
     "SkyMixin",
     "StaticFovMixin",

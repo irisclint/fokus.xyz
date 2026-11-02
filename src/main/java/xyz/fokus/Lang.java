@@ -1033,7 +1033,11 @@ public final class Lang {
             "Blindheit-Nebel aus",
             "No blindness fog",
             "Dunkelheit-Nebel aus",
-            "No darkness fog"
+            "No darkness fog",
+            "Treffer-Farbe",
+            "Hit colour",
+            "Getroffene Spieler und Mobs leuchten in deiner Farbe statt rot.",
+            "Players and mobs you hit flash in your colour instead of red."
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {
