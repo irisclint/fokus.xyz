@@ -37,6 +37,7 @@
     "MinecraftMixin",
     "MouseHandlerMixin",
     "NametagHealthMixin",
+    "NickHiderTabMixin",
     "OverlayTextureMixin",
     "ParticleEngineMixin",
     "PauseScreenMixin",

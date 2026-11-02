@@ -27,7 +27,7 @@ Einstellungen, Mittelklick Taste belegen, einfach lostippen zum Suchen. Englisch
   Lichtlevel, Haltbarkeit – alles im HUD-Editor verschiebbar.
 - **Chat & Tab:** Ping in der Tab-Liste als farbige Zahl, Zeitstempel vor jeder Nachricht (drei Formate, eigene Klammern und Farbe), gleiche
   Nachrichten hintereinander werden zu einer Zeile mit Zähler gestapelt, Erwähnungen deines Namens
-  werden hervorgehoben und pingen, Chat-Makros (Taste sendet z. B. „gg“ oder „/spawn“), Chat-Filter für Werbung und Spam.
+  werden hervorgehoben und pingen, Chat-Makros (Taste sendet z. B. „gg“ oder „/spawn“), Chat-Filter für Werbung und Spam, Namen verstecken (Ersatzname in Chat, Tab-Liste und am Kopf).
 - **Musik:** Now Playing mit Cover und Lyrics – am Himmel oder auf dem Bildschirm, jede App und
   jede Seite im Browser, Titel und Liedtexte in jeder Sprache (lrclib.net, NetEase); mit [ und ] den
   Versatz pro Song nachstellen, eigene Karaoke-Farben; Musik-Steuerung mit F7/F8/F9 (zurück, Pause, weiter).

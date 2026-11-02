@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import xyz.fokus.module.impl.hud.ChatMentionModule;
 import xyz.fokus.module.impl.hud.ChatStackModule;
 import xyz.fokus.module.impl.hud.ChatTimestampModule;
+import xyz.fokus.module.impl.hud.NickHiderModule;
 
 /**
  * Every chat line - player, server and client messages - passes through addMessage. Stacking and
@@ -71,6 +72,7 @@ public abstract class ChatTimestampMixin {
             fokus$repeats = 1;
         }
         fokus$lastText = text;
+        shown = NickHiderModule.replace(shown);
         shown = ChatTimestampModule.stamp(shown);
         fokus$lastShown = shown;
         return shown;

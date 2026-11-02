@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import xyz.fokus.module.impl.hud.NickHiderModule;
 import xyz.fokus.module.impl.pvp.NametagHealthModule;
 
 /** The text above an entity's head; no renderer overrides it, players included. */
@@ -15,6 +16,6 @@ public class NametagHealthMixin {
     @Inject(method = "getNameTag(Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/network/chat/Component;",
             at = @At("RETURN"), cancellable = true)
     private void fokus$health(Entity entity, CallbackInfoReturnable<Component> cir) {
-        cir.setReturnValue(NametagHealthModule.decorate(entity, cir.getReturnValue()));
+        cir.setReturnValue(NametagHealthModule.decorate(entity, NickHiderModule.replace(cir.getReturnValue())));
     }
 }

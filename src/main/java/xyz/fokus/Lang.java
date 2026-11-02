@@ -1177,7 +1177,13 @@ public final class Lang {
             "Nur ganze Wörter",
             "Whole words only",
             "Eigener Text",
-            "Own text"
+            "Own text",
+            "Namen verstecken",
+            "Hide name",
+            "Dein Name erscheint im Chat, in der Tab-Liste und am Kopf als Ersatzname.",
+            "Your name shows as another in chat, the tab list and above your head.",
+            "Ersatzname",
+            "Alias",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {
