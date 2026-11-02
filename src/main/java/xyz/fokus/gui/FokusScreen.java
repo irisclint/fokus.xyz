@@ -343,11 +343,12 @@ public class FokusScreen extends Screen {
         if (this.search.isEmpty()) {
             return Modules.in(this.category);
         } else {
-            String q = this.search.toLowerCase(Locale.ROOT);
+            String q = fold(this.search.trim());
             List<Module> out = new ArrayList<>();
 
             for (Module m : Modules.all()) {
-                if (matches(m.name, q) || matches(m.description, q) || matches(m.category.label, q)) {
+                if (matches(m.name, q) || matches(m.description, q) || matches(m.category.label, q)
+                        || m.settings().stream().anyMatch(st -> matches(st.name, q))) {
                     out.add(m);
                 }
             }
@@ -720,8 +721,14 @@ public class FokusScreen extends Screen {
         }
     }
 
+    /** Found in German or English, whichever language is chosen. */
     private static boolean matches(String german, String q) {
-        return german.toLowerCase(Locale.ROOT).contains(q) || Lang.t(german).toLowerCase(Locale.ROOT).contains(q);
+        return german != null && (fold(german).contains(q) || fold(Lang.en(german)).contains(q));
+    }
+
+    /** Lower case, umlauts and ß spelt out, so "aussen" finds "außen". */
+    private static String fold(String s) {
+        return s.toLowerCase(Locale.ROOT).replace("ä", "a").replace("ö", "o").replace("ü", "u").replace("ß", "ss");
     }
 
     private void click() {

@@ -25,6 +25,12 @@ public final class Lang {
         }
     }
 
+    /** The English text for a German one, whatever language is chosen (the German one if there is none). */
+    public static String en(String german) {
+        String en = german == null ? null : EN.get(german);
+        return en != null ? en : german;
+    }
+
     public static String t(String german) {
         if (german != null && english()) {
             String en = EN.get(german);
