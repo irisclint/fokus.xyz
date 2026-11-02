@@ -28,7 +28,8 @@ Einstellungen, Mittelklick Taste belegen, einfach lostippen zum Suchen. Englisch
 - **Chat & Tab:** Ping in der Tab-Liste als farbige Zahl, Zeitstempel vor jeder Nachricht (drei Formate, eigene Klammern und Farbe), gleiche
   Nachrichten hintereinander werden zu einer Zeile mit Zähler gestapelt.
 - **Musik:** Now Playing mit Cover und Lyrics – am Himmel oder auf dem Bildschirm, jede App und
-  jede Seite im Browser, Titel und Liedtexte in jeder Sprache (lrclib.net, NetEase).
+  jede Seite im Browser, Titel und Liedtexte in jeder Sprache (lrclib.net, NetEase); mit [ und ] den
+  Versatz pro Song nachstellen, eigene Karaoke-Farben.
 - **Animationen:** Schwung-Stile, Blockhit, Item-Ansicht pro Item-Art, Wechsel- und
   Inventar-Animation.
 - **Visuals:** Item-Aura (Leuchten mit Farbverlauf um Totems, Perlen & Co. – in Hotbar, Inventar und Welt),

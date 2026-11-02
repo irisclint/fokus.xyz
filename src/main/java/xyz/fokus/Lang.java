@@ -1128,6 +1128,12 @@ public final class Lang {
             "Info",
             "Musik & Chat",
             "Music & chat",
+            "Song-Lyrics früher",
+            "Song lyrics earlier",
+            "Song-Lyrics später",
+            "Song lyrics later",
+            "Lyrics-Versatz für diesen Song",
+            "Lyrics offset for this song",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

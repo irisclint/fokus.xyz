@@ -108,6 +108,25 @@ public final class Compat {
         }
     }
 
+    /** A short message above the hotbar: Gui.setOverlayMessage on 26.1, Gui.hud's from 26.2 on. */
+    public static void actionBar(Component message) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc == null || mc.gui == null) {
+            return;
+        }
+        Object holder = mc.gui;
+        try {
+            try {
+                holder.getClass().getMethod("setOverlayMessage", Component.class, boolean.class).invoke(holder, message, false);
+            } catch (NoSuchMethodException e) {
+                holder = holder.getClass().getField("hud").get(holder);
+                holder.getClass().getMethod("setOverlayMessage", Component.class, boolean.class).invoke(holder, message, false);
+            }
+        } catch (ReflectiveOperationException e) {
+            say(message);
+        }
+    }
+
     /** A line in the chat that only this player sees. */
     public static void say(Component message) {
         ChatComponent chat = chat();

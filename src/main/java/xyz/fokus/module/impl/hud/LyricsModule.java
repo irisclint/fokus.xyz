@@ -10,6 +10,10 @@ import xyz.fokus.SkyAnchor;
 import xyz.fokus.lyrics.CoverArt;
 import xyz.fokus.lyrics.LyricsSource;
 import xyz.fokus.lyrics.MediaWatcher;
+import xyz.fokus.lyrics.SongOffsets;
+import xyz.fokus.compat.Compat;
+import net.minecraft.network.chat.Component;
+import xyz.fokus.setting.KeySetting;
 import xyz.fokus.module.HudModule;
 import xyz.fokus.setting.BoolSetting;
 import xyz.fokus.setting.ColorSetting;
@@ -37,6 +41,8 @@ public class LyricsModule extends HudModule {
     public final BoolSetting cover = this.add(new BoolSetting("Cover zeigen", true)).visibleWhen(() -> this.place.is("Bildschirm"));
     public final BoolSetting secondSource = this.add(new BoolSetting("Zweite Quelle (NetEase)", true));
     public final NumberSetting offset = this.add(new NumberSetting("Versatz", 0.0, -3.0, 3.0, 0.1, " s"));
+    public final KeySetting earlier = this.add(new KeySetting("Song-Lyrics früher", Compat.key("KEY_LBRACKET")));
+    public final KeySetting later = this.add(new KeySetting("Song-Lyrics später", Compat.key("KEY_RBRACKET")));
     private static final float WIDTH = 300.0F;
     private static final int COVER = 20;
     private final Anim show = new Anim(0.0F, 6.0F);
@@ -57,6 +63,24 @@ public class LyricsModule extends HudModule {
     public void onTick(Minecraft mc) {
         LyricsSource.secondSource = this.secondSource.on();
         MediaWatcher.start();
+        // Nudging this song's lyrics while it plays; remembered for the song.
+        boolean early = this.earlier.pressed();
+        boolean late = this.later.pressed();
+        MediaWatcher.Track track = MediaWatcher.current();
+        if ((early || late) && track != null && Compat.currentScreen() == null) {
+            this.nudge(track, early ? -0.1 : 0.1);
+        }
+    }
+
+    /** Moves the current song's lyrics and says by how much in the action bar. */
+    private void nudge(MediaWatcher.Track track, double delta) {
+        double v = SongOffsets.nudge(songKey(track), delta);
+        String shown = (v > 0 ? "+" : "") + String.format(java.util.Locale.ROOT, "%.1f s", v);
+        Compat.actionBar(Component.literal("♪ " + Lang.t("Lyrics-Versatz für diesen Song") + ": " + shown));
+    }
+
+    private static String songKey(MediaWatcher.Track track) {
+        return track.cleanArtist() + " – " + track.title();
     }
 
     @Override
@@ -79,7 +103,7 @@ public class LyricsModule extends HudModule {
             }
 
             List<LyricsSource.Line> lines = track.live() ? List.of() : LyricsSource.forTrack(track);
-            long now = Math.round((track.positionNow() + this.offset.get()) * 1000.0);
+            long now = Math.round((track.positionNow() + this.offset.get() + SongOffsets.get(songKey(track))) * 1000.0);
             int index = -1;
             int i = 0;
 
