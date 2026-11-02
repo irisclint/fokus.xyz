@@ -1029,7 +1029,11 @@ public final class Lang {
             "Absorption mitzählen",
             "Count absorption",
             "Auch bei Mobs",
-            "Mobs too"
+            "Mobs too",
+            "Blindheit-Nebel aus",
+            "No blindness fog",
+            "Dunkelheit-Nebel aus",
+            "No darkness fog"
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

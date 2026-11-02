@@ -1,6 +1,9 @@
 package xyz.fokus.module.impl.visual;
 
+import net.minecraft.core.Holder;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import xyz.fokus.module.Category;
 import xyz.fokus.module.Module;
 import xyz.fokus.module.Modules;
@@ -12,6 +15,8 @@ public class ClearViewModule extends Module {
     public final BoolSetting portal = this.add(new BoolSetting("Portal-Effekt aus", false));
     public final BoolSetting nausea = this.add(new BoolSetting("Übelkeit-Verzerrung aus", true));
     public final BoolSetting powderSnow = this.add(new BoolSetting("Pulverschnee-Rand aus", false));
+    public final BoolSetting blindness = this.add(new BoolSetting("Blindheit-Nebel aus", false));
+    public final BoolSetting darkness = this.add(new BoolSetting("Dunkelheit-Nebel aus", false));
 
     public ClearViewModule() {
         super("Klare Sicht", "Kürbis-Overlay, dunkler Bildrand, Portal- und Übelkeits-Effekt weg.", Category.VISUALS);
@@ -35,6 +40,13 @@ public class ClearViewModule extends Module {
     public static boolean hideNausea() {
         ClearViewModule m = on();
         return m != null && m.nausea.on();
+    }
+
+    /** Whether the fog of this effect (blindness, the warden's darkness) is left out. */
+    public static boolean hideEffectFog(Holder<MobEffect> effect) {
+        ClearViewModule m = on();
+        return m != null && (m.blindness.on() && effect.is(MobEffects.BLINDNESS)
+                || m.darkness.on() && effect.is(MobEffects.DARKNESS));
     }
 
     public static boolean hideTexture(Identifier texture) {

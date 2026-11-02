@@ -33,7 +33,7 @@ Einstellungen, Mittelklick Taste belegen, einfach lostippen zum Suchen. Englisch
   Inventar-Animation.
 - **Visuals:** Item-Aura (Leuchten mit Farbverlauf um Totems, Perlen & Co. – in Hotbar, Inventar und Welt),
   End-Kristalle, Totems, Better Items (17 Gruppen, 14 Stile), Himmel (Farben, Wolken,
-  Mond, Tag & Nacht), Klares Wetter, Klare Sicht, Block-Umrandung (Farbe, Breite), Fullbright, Low Fire.
+  Mond, Tag & Nacht), Klares Wetter, Klare Sicht (auch ohne Blindheit- und Dunkelheit-Nebel), Block-Umrandung (Farbe, Breite), Fullbright, Low Fire.
 - **Profile & Teilen:** drei Setups; das eigene Setup als Text an Freunde schicken.
 
 ## Bauen und veröffentlichen
