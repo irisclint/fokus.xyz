@@ -1167,7 +1167,15 @@ public final class Lang {
             "Makro 3 Taste",
             "Macro 3 key",
             "Makro 3 Text",
-            "Macro 3 text"
+            "Macro 3 text",
+            "Chat-Filter",
+            "Chat filter",
+            "Zeilen mit bestimmten Wörtern verschwinden aus dem Chat (z. B. Werbung).",
+            "Lines with certain words disappear from the chat (e.g. ads).",
+            "Wörter (mit Komma)",
+            "Words (comma separated)",
+            "Nur ganze Wörter",
+            "Whole words only",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

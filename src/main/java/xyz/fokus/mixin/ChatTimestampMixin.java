@@ -4,6 +4,12 @@ import java.util.List;
 import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.client.multiplayer.chat.GuiMessage;
 import net.minecraft.network.chat.Component;
+import net.minecraft.client.multiplayer.chat.GuiMessageSource;
+import net.minecraft.client.multiplayer.chat.GuiMessageTag;
+import net.minecraft.network.chat.MessageSignature;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xyz.fokus.module.impl.hud.ChatFilterModule;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -35,6 +41,15 @@ public abstract class ChatTimestampMixin {
     private int fokus$repeats;
     @Unique
     private Component fokus$lastShown;
+
+    /** Filtered lines never reach the chat - nor the stacking and timestamp below. */
+    @Inject(method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/multiplayer/chat/GuiMessageSource;Lnet/minecraft/client/multiplayer/chat/GuiMessageTag;)V", at = @At("HEAD"), cancellable = true)
+    private void fokus$filter(Component message, MessageSignature signature, GuiMessageSource source, GuiMessageTag tag,
+            CallbackInfo ci) {
+        if (message != null && ChatFilterModule.hides(message.getString())) {
+            ci.cancel();
+        }
+    }
 
     @ModifyVariable(method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/multiplayer/chat/GuiMessageSource;Lnet/minecraft/client/multiplayer/chat/GuiMessageTag;)V",
             at = @At("HEAD"), argsOnly = true, ordinal = 0)
