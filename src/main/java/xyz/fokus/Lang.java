@@ -1096,6 +1096,10 @@ public final class Lang {
             "A red edge around the screen when your health runs low.",
             "Ab Herzen",
             "Below hearts",
+            "Farbe gesungen",
+            "Sung colour",
+            "Farbe Rest",
+            "Rest colour",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

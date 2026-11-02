@@ -12,6 +12,7 @@ import xyz.fokus.lyrics.LyricsSource;
 import xyz.fokus.lyrics.MediaWatcher;
 import xyz.fokus.module.HudModule;
 import xyz.fokus.setting.BoolSetting;
+import xyz.fokus.setting.ColorSetting;
 import xyz.fokus.setting.ModeSetting;
 import xyz.fokus.setting.NumberSetting;
 import xyz.fokus.util.Anim;
@@ -28,6 +29,9 @@ public class LyricsModule extends HudModule {
     public final ModeSetting typeface = this.add(new ModeSetting("Schrift", "Glatt", "Glatt", "Minecraft"));
     public final ModeSetting style = this.add(new ModeSetting("Darstellung", "Karaoke", "Karaoke", "Ganze Zeile"));
     public final BoolSetting glow = this.add(new BoolSetting("Leuchten", true));
+    public final BoolSetting ownColors = this.add(new BoolSetting("Eigene Farben", false));
+    public final ColorSetting sungColor = this.add(new ColorSetting("Farbe gesungen", 0xFFFFFFFF)).visibleWhen(() -> this.ownColors.on());
+    public final ColorSetting restColor = this.add(new ColorSetting("Farbe Rest", 0xFF8A8A8A)).visibleWhen(() -> this.ownColors.on());
     public final BoolSetting next = this.add(new BoolSetting("Nächste Zeile zeigen", true));
     public final BoolSetting title = this.add(new BoolSetting("Songtitel zeigen", true));
     public final BoolSetting cover = this.add(new BoolSetting("Cover zeigen", true)).visibleWhen(() -> this.place.is("Bildschirm"));
@@ -211,8 +215,9 @@ public class LyricsModule extends HudModule {
         this.slide.to(0.0F);
         float sl = this.slide.get();
         float cx = x0 + 150.0F;
-        int white = this.text();
-        int gray = this.label();
+        // The sung part and the rest: the design's colours, or the player's own (rainbow runs along the line).
+        int white = this.ownColors.on() ? this.sungColor.color(System.currentTimeMillis() % 4000L / 4000.0F) | 0xFF000000 : this.text();
+        int gray = this.ownColors.on() ? this.restColor.color(0.5F) | 0xFF000000 : this.label();
         float big = this.textSize.f() * 0.75F;
         float y = y0;
         if (this.title.on() && !v.title.isEmpty()) {
