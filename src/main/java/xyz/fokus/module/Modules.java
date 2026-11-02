@@ -11,6 +11,8 @@ import xyz.fokus.module.impl.anim.InventoryAnimModule;
 import xyz.fokus.module.impl.anim.ItemViewModule;
 import xyz.fokus.module.impl.anim.SwingModule;
 import xyz.fokus.module.impl.hud.ArmorModule;
+import xyz.fokus.module.impl.hud.ChatStackModule;
+import xyz.fokus.module.impl.hud.ChatTimestampModule;
 import xyz.fokus.module.impl.hud.ItemCounterModule;
 import xyz.fokus.module.impl.hud.KeystrokesModule;
 import xyz.fokus.module.impl.hud.LyricsModule;
@@ -82,6 +84,8 @@ public final class Modules {
         register(new ItemCounterModule());
         register(new LyricsModule());
         register(new NowPlayingModule());
+        register(new ChatTimestampModule());
+        register(new ChatStackModule());
         register(new MoreHudModules.Compass());
         register(new MoreHudModules.NearbyPlayers());
         register(new MoreHudModules.Hunger());

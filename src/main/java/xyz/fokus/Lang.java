@@ -991,7 +991,19 @@ public final class Lang {
             "Bogen-Zoom behalten",
             "Keep the bow zoom",
             "Fernrohr behalten",
-            "Keep the spyglass"
+            "Keep the spyglass",
+            "Chat-Zeitstempel",
+            "Chat timestamps",
+            "Die Uhrzeit vor jeder Chat-Nachricht.",
+            "The time in front of every chat message.",
+            "Klammern",
+            "Brackets",
+            "Keine",
+            "None",
+            "Chat stapeln",
+            "Stack chat",
+            "Gleiche Nachrichten hintereinander werden zu einer Zeile mit Zähler.",
+            "The same message in a row becomes one line with a counter."
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

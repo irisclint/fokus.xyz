@@ -10,6 +10,7 @@
     "BlockOutlineLegacyMixin",
     "BlockOutlineMixin",
     "CameraMixin",
+    "ChatTimestampMixin",
     "ClearViewGuiMixin",
     "ClearViewHudMixin",
     "CloudColorLegacyMixin",
