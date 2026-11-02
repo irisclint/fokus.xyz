@@ -1003,7 +1003,15 @@ public final class Lang {
             "Chat stapeln",
             "Stack chat",
             "Gleiche Nachrichten hintereinander werden zu einer Zeile mit Zähler.",
-            "The same message in a row becomes one line with a counter."
+            "The same message in a row becomes one line with a counter.",
+            "Tab-Ping",
+            "Tab ping",
+            "Der Ping in der Tab-Liste als Zahl statt Balken.",
+            "The ping in the tab list as a number instead of bars.",
+            "Mit „ms“",
+            "With “ms”",
+            "Nach Ping färben",
+            "Colour by ping"
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

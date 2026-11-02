@@ -39,6 +39,7 @@
     "StaticFovMixin",
     "SwingDurationLegacyMixin",
     "SwingDurationMixin",
+    "TabPingMixin",
     "TotemCounterMixin",
     "TotemParticleMixin",
     "TotemPopMixin",

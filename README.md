@@ -25,7 +25,7 @@ Einstellungen, Mittelklick Taste belegen, einfach lostippen zum Suchen. Englisch
   Keystrokes, Rüstung, Effekte, Target HUD, Combo, Reach, Item-Zähler, Totem Pops, Cooldowns,
   Kompass, Spieler in der Nähe, Hunger, Rüstungswarnung, Spielzeit, Tageszeit, Biom, RAM, TPS,
   Lichtlevel, Haltbarkeit – alles im HUD-Editor verschiebbar.
-- **Chat:** Zeitstempel vor jeder Nachricht (drei Formate, eigene Klammern und Farbe), gleiche
+- **Chat & Tab:** Ping in der Tab-Liste als farbige Zahl, Zeitstempel vor jeder Nachricht (drei Formate, eigene Klammern und Farbe), gleiche
   Nachrichten hintereinander werden zu einer Zeile mit Zähler gestapelt.
 - **Musik:** Now Playing mit Cover und Lyrics – am Himmel oder auf dem Bildschirm, jede App und
   jede Seite im Browser, Titel und Liedtexte in jeder Sprache (lrclib.net, NetEase).

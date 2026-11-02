@@ -12,6 +12,6 @@ import xyz.fokus.module.impl.pvp.StaticFovModule;
 public class StaticFovMixin {
     @Inject(method = "getFieldOfViewModifier", at = @At("RETURN"), cancellable = true)
     private void fokus$staticFov(boolean firstPerson, float effectScale, CallbackInfoReturnable<Float> cir) {
-        cir.setReturnValue(StaticFovModule.modifier((AbstractClientPlayer) (Object) this, cir.getReturnValue()));
+        cir.setReturnValue(StaticFovModule.modifier((AbstractClientPlayer) (Object) this, cir.getReturnValue(), effectScale));
     }
 }

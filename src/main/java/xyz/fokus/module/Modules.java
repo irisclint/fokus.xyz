@@ -21,6 +21,7 @@ import xyz.fokus.module.impl.hud.MoreHudModules;
 import xyz.fokus.module.impl.hud.NowPlayingModule;
 import xyz.fokus.module.impl.hud.PotionsModule;
 import xyz.fokus.module.impl.hud.SimpleHudModules;
+import xyz.fokus.module.impl.hud.TabPingModule;
 import xyz.fokus.module.impl.hud.TargetHudModule;
 import xyz.fokus.module.impl.hud.TotemPopsModule;
 import xyz.fokus.module.impl.hud.WatermarkModule;
@@ -86,6 +87,7 @@ public final class Modules {
         register(new NowPlayingModule());
         register(new ChatTimestampModule());
         register(new ChatStackModule());
+        register(new TabPingModule());
         register(new MoreHudModules.Compass());
         register(new MoreHudModules.NearbyPlayers());
         register(new MoreHudModules.Hunger());
