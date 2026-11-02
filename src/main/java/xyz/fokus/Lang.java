@@ -1150,6 +1150,24 @@ public final class Lang {
             "When someone names you in chat, the line stands out and pings.",
             "Ton",
             "Sound",
+            "Chat-Makros",
+            "Chat macros",
+            "Eine Taste schreibt einen festen Text in den Chat, z. B. „gg“ oder „/spawn“.",
+            "A key writes a set line into the chat, e.g. “gg” or “/spawn”.",
+            "leer",
+            "empty",
+            "Makro 1 Taste",
+            "Macro 1 key",
+            "Makro 1 Text",
+            "Macro 1 text",
+            "Makro 2 Taste",
+            "Macro 2 key",
+            "Makro 2 Text",
+            "Macro 2 text",
+            "Makro 3 Taste",
+            "Macro 3 key",
+            "Makro 3 Text",
+            "Macro 3 text"
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

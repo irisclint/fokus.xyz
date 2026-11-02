@@ -12,6 +12,7 @@ import xyz.fokus.module.impl.anim.ItemViewModule;
 import xyz.fokus.module.impl.anim.SwingModule;
 import xyz.fokus.module.impl.hud.ArmorModule;
 import xyz.fokus.module.impl.hud.BowChargeModule;
+import xyz.fokus.module.impl.hud.ChatMacrosModule;
 import xyz.fokus.module.impl.hud.ChatMentionModule;
 import xyz.fokus.module.impl.hud.ChatStackModule;
 import xyz.fokus.module.impl.hud.ChatTimestampModule;
@@ -107,6 +108,7 @@ public final class Modules {
         register(new ChatTimestampModule());
         register(new ChatStackModule());
         register(new ChatMentionModule());
+        register(new ChatMacrosModule());
         register(new TabPingModule());
         register(new MoreHudModules.Compass());
         register(new DeathPointModule());
@@ -152,7 +154,7 @@ public final class Modules {
                 SimpleHudModules.Reach.class, MoreHudModules.ArmorWarning.class, MoreHudModules.Cooldowns.class,
                 ArmorModule.class, PotionsModule.class, ItemCounterModule.class);
         group("Musik & Chat", LyricsModule.class, NowPlayingModule.class, MediaControlModule.class, ChatTimestampModule.class, ChatStackModule.class,
-                ChatMentionModule.class, TabPingModule.class);
+                ChatMentionModule.class, ChatMacrosModule.class, TabPingModule.class);
     }
 
     /** Puts these modules under one heading in the menu; the HUD has grown too long for one list. */

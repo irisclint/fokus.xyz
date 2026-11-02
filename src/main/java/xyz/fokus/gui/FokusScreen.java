@@ -27,6 +27,7 @@ import xyz.fokus.setting.ActionSetting;
 import xyz.fokus.setting.BoolSetting;
 import xyz.fokus.setting.ColorSetting;
 import xyz.fokus.setting.KeySetting;
+import xyz.fokus.setting.TextSetting;
 import xyz.fokus.setting.ModeSetting;
 import xyz.fokus.setting.NumberSetting;
 import xyz.fokus.setting.Setting;
@@ -67,6 +68,8 @@ public class FokusScreen extends Screen {
     private float hueX;
     private float hueW;
     private KeySetting listening;
+    /** The text setting being typed into, if any. */
+    private TextSetting editing;
     private final List<FokusScreen.Hit> hits = new ArrayList<>();
     private Module hoveredModule;
     private long hoverStart;
@@ -307,7 +310,7 @@ public class FokusScreen extends Screen {
 
         String sub = this.search.isEmpty()
             ? (total == 0 ? Lang.t("Einstellungen der Mod") : on + " " + Lang.t("von") + " " + total + " " + Lang.t("aktiv"))
-            : list.size() + " " + Lang.t("Treffer");
+            : list.size() + " " + (list.size() == 1 ? Lang.t("Treffer").replace("results", "result") : Lang.t("Treffer"));
         R2D.text(g, this.font, sub, this.cx, this.py + 27.0F, 0.65F, Colors.alpha(-10263709, a), false);
         float bw = Math.min(130.0F, this.cw * 0.42F);
         float bx = this.px + this.pw - 12.0F - bw;
@@ -725,6 +728,33 @@ public class FokusScreen extends Screen {
                     }
                 }));
             }
+        } else if (s instanceof TextSetting t) {
+            boolean typing = this.editing == t;
+            float fw = Math.max(60.0F, w * 0.55F);
+            float fx = x + w - fw;
+            R2D.text(g, this.font, R2D.trim(this.font, name, w - fw - 6.0F, 0.75F), x, y + 4.0F, 0.75F, label, false);
+            R2D.round(g, fx, y + 1.5F, fw, 11.0F, 3.5F, Colors.alpha(typing ? 520093695 : 318767103, a));
+            R2D.roundEdge(g, fx, y + 1.5F, fw, 11.0F, 3.5F, Colors.alpha(typing ? 1442840575 : 285212671, a));
+            String v = t.get();
+            boolean empty = v.isEmpty() && !typing;
+            String shown = empty ? Lang.t("leer") : v;
+            // The end of a long text stays in view while typing.
+            String fit = typing ? tail(shown, fw - 10.0F, 0.72F) : R2D.trim(this.font, shown, fw - 8.0F, 0.72F);
+            R2D.text(g, this.font, fit, fx + 4.0F, y + 4.4F, 0.72F, Colors.alpha(empty ? -10263709 : -723724, a), false);
+            if (typing && System.currentTimeMillis() / 500L % 2L == 0L) {
+                float cx = fx + 4.0F + R2D.width(this.font, fit) * 0.72F + 0.5F;
+                R2D.rect(g, cx, y + 3.5F, cx + 0.6F, y + 10.5F, Colors.alpha(-723724, a));
+            }
+            if (interactive) {
+                this.hits.add(new FokusScreen.Hit(x - 4.0F, y, w + 8.0F, 14.0F, true, (btn, px2, py2x) -> {
+                    if (btn == 1) {
+                        t.set("");
+                        ConfigIO.save();
+                    } else {
+                        this.editing = t;
+                    }
+                }));
+            }
         } else if (s instanceof ActionSetting act) {
             float bh = 15.0F;
             R2D.round(g, x, y + 1.0F, w, bh, 4.0F, Colors.alpha(hover ? 520093695 : 318767103, a));
@@ -734,6 +764,15 @@ public class FokusScreen extends Screen {
                 this.hits.add(new FokusScreen.Hit(x, y + 1.0F, w, bh, true, (btn, px2, py2x) -> act.run()));
             }
         }
+    }
+
+    /** As much of the end of s as fits: what is being typed stays visible. */
+    private String tail(String s, float maxWidth, float scale) {
+        String out = s;
+        while (!out.isEmpty() && R2D.width(this.font, out) * scale > maxWidth) {
+            out = out.substring(out.offsetByCodePoints(0, 1));
+        }
+        return out;
     }
 
     private static void setHue(ColorSetting c, float f) {
@@ -808,6 +847,10 @@ public class FokusScreen extends Screen {
             int b = button(event);
             this.listening = null;
             this.searchFocus = false;
+            if (this.editing != null) {
+                this.editing = null;
+                ConfigIO.save();
+            }
             if (b == 0 && this.overScrollbar(mx, my)) {
                 this.scrollDragging = true;
                 boolean onThumb = my >= this.thumbY && my <= this.thumbY + this.thumbH;
@@ -875,7 +918,15 @@ public class FokusScreen extends Screen {
     @Override
     public boolean keyPressed(KeyEvent event) {
         int key = event.key();
-        if (this.listening != null) {
+        if (this.editing != null) {
+            if (key == Compat.KEY_ESCAPE || key == Compat.KEY_RETURN) {
+                this.editing = null;
+                ConfigIO.save();
+            } else if (key == Compat.KEY_BACKSPACE) {
+                this.editing.backspace();
+            }
+            return true;
+        } else if (this.listening != null) {
             if (key != Compat.KEY_ESCAPE && key != Compat.KEY_BACKSPACE && key != Compat.KEY_DELETE) {
                 this.listening.set(key);
             } else {
@@ -913,6 +964,11 @@ public class FokusScreen extends Screen {
     @Override
     public boolean charTyped(CharacterEvent event) {
         if (this.listening != null || this.closingAt >= 0L) {
+            return true;
+        } else if (this.editing != null) {
+            if (event.isAllowedChatCharacter()) {
+                this.editing.type(event.codepointAsString());
+            }
             return true;
         } else if (!event.isAllowedChatCharacter()) {
             return false;
