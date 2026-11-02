@@ -1089,7 +1089,13 @@ public final class Lang {
             "Farbe wenn voll",
             "Colour when full",
             "NEU",
-            "NEW"
+            "NEW",
+            "Wenig-Leben-Warnung",
+            "Low health warning",
+            "Ein roter Rand am Bildschirm, wenn dein Leben knapp wird.",
+            "A red edge around the screen when your health runs low.",
+            "Ab Herzen",
+            "Below hearts",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

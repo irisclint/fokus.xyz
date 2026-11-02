@@ -38,8 +38,10 @@ public class BowChargeModule extends HudModule {
         if (stack.is(Items.BOW)) {
             return Math.min(1.0F, ticks / BOW_TICKS);
         }
-        if (stack.is(Items.CROSSBOW) && !CrossbowItem.isCharged(stack)) {
-            return Math.min(1.0F, ticks / (float) Math.max(1, CrossbowItem.getChargeDuration(stack, p)));
+        if (stack.is(Items.CROSSBOW)) {
+            // The crossbow counts as loaded while still held once it is full: that is 100%, not gone.
+            return CrossbowItem.isCharged(stack) ? 1.0F
+                    : Math.min(1.0F, ticks / (float) Math.max(1, CrossbowItem.getChargeDuration(stack, p)));
         }
         if (stack.is(Items.TRIDENT)) {
             return Math.min(1.0F, ticks / (float) TridentItem.THROW_THRESHOLD_TIME);

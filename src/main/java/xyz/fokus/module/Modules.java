@@ -19,6 +19,7 @@ import xyz.fokus.module.impl.hud.DamageNumbersModule;
 import xyz.fokus.module.impl.hud.DeathPointModule;
 import xyz.fokus.module.impl.hud.ItemCounterModule;
 import xyz.fokus.module.impl.hud.KeystrokesModule;
+import xyz.fokus.module.impl.hud.LowHealthModule;
 import xyz.fokus.module.impl.hud.LyricsModule;
 import xyz.fokus.module.impl.hud.ModuleListModule;
 import xyz.fokus.module.impl.hud.MoreHudModules;
@@ -92,6 +93,7 @@ public final class Modules {
         register(new SessionStatsModule());
         register(new DamageNumbersModule());
         register(new BowChargeModule());
+        register(new LowHealthModule());
         register(new SimpleHudModules.Combo());
         register(new SimpleHudModules.Reach());
         register(new ItemCounterModule());

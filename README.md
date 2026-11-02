@@ -22,7 +22,7 @@ Einstellungen, Mittelklick Taste belegen, einfach lostippen zum Suchen. Englisch
 - **PvP:** Toggle Sprint/Sneak, Zoom, Freelook, Festes Sichtfeld, Custom Crosshair (12 Stile, pixelgenau), Leben im Namen, Hitmarker,
   Hit Sounds, No Hurt Cam.
 - **HUD (über 30 Teile):** Wasserzeichen, FPS, CPS, Ping, Koordinaten, Uhr, Speed, Server,
-  Keystrokes, Rüstung, Effekte, Target HUD, Kampf-Timer, Session-Statistik (Kills, Tode, K/D), Schadenszahlen, Bogen-Anzeige, Combo, Reach, Item-Zähler, Totem Pops, Cooldowns,
+  Keystrokes, Rüstung, Effekte, Target HUD, Kampf-Timer, Session-Statistik (Kills, Tode, K/D), Schadenszahlen, Bogen-Anzeige, Wenig-Leben-Warnung, Combo, Reach, Item-Zähler, Totem Pops, Cooldowns,
   Kompass, Todespunkt (Chat + Pfeil mit Entfernung), Spieler in der Nähe, Hunger, Rüstungswarnung, Spielzeit, Tageszeit, Biom, RAM, TPS,
   Lichtlevel, Haltbarkeit – alles im HUD-Editor verschiebbar.
 - **Chat & Tab:** Ping in der Tab-Liste als farbige Zahl, Zeitstempel vor jeder Nachricht (drei Formate, eigene Klammern und Farbe), gleiche
