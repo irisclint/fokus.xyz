@@ -1100,6 +1100,18 @@ public final class Lang {
             "Sung colour",
             "Farbe Rest",
             "Rest colour",
+            "Partikel",
+            "Particles",
+            "Mehr Treffer-Partikel, keine Explosions- oder Totem-Wolken.",
+            "More hit particles, no explosion or totem clouds.",
+            "Krit-Partikel",
+            "Crit particles",
+            "Immer Schärfe-Partikel",
+            "Always sharpness particles",
+            "Explosions-Partikel aus",
+            "No explosion particles",
+            "Totem-Partikel aus",
+            "No totem particles",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

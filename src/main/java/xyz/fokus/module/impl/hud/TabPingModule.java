@@ -19,6 +19,8 @@ public class TabPingModule extends Module {
 
     /** The vanilla icon is 10px wide, in a 13px slot. */
     private static final int ICON = 10;
+    private static int cachedWidest;
+    private static long measuredAt;
 
     public TabPingModule() {
         super("Tab-Ping", "Der Ping in der Tab-Liste als Zahl statt Balken.", Category.HUD);
@@ -63,11 +65,17 @@ public class TabPingModule extends Module {
         if (m == null || connection == null) {
             return vanilla;
         }
-        int widest = 0;
-        for (PlayerInfo info : connection.getOnlinePlayers()) {
-            widest = Math.max(widest, mc.font.width(m.text(info.getLatency())));
+        // Measured at most twice a second: on a big server the list holds hundreds of players.
+        long now = System.currentTimeMillis();
+        if (now - measuredAt > 500L) {
+            int widest = 0;
+            for (PlayerInfo info : connection.getOnlinePlayers()) {
+                widest = Math.max(widest, mc.font.width(m.text(info.getLatency())));
+            }
+            cachedWidest = widest;
+            measuredAt = now;
         }
-        return vanilla - ICON + widest + 3;
+        return vanilla - ICON + cachedWidest + 3;
     }
 
     /** Draws the number where the icon would be; false leaves the icon to the game. */

@@ -52,6 +52,7 @@ import xyz.fokus.module.impl.visual.FullbrightModule;
 import xyz.fokus.module.impl.visual.HitColorModule;
 import xyz.fokus.module.impl.visual.LowFireModule;
 import xyz.fokus.module.impl.visual.NoBobModule;
+import xyz.fokus.module.impl.visual.ParticlesModule;
 import xyz.fokus.module.impl.visual.SkyModule;
 import xyz.fokus.module.impl.visual.TexturesModule;
 import xyz.fokus.module.impl.visual.TotemModule;
@@ -127,6 +128,7 @@ public final class Modules {
         register(new TotemModule());
         register(new ItemAuraModule());
         register(new HitColorModule());
+        register(new ParticlesModule());
         register(new TexturesModule());
         register(new SkyModule());
         register(new ClearWeatherModule());

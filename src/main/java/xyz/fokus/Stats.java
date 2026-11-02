@@ -89,6 +89,7 @@ public final class Stats {
             }
 
             Modules.get(HitSoundsModule.class).play();
+            xyz.fokus.module.impl.visual.ParticlesModule.onAttack(entity);
         }
     }
 

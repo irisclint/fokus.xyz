@@ -38,6 +38,7 @@
     "MouseHandlerMixin",
     "NametagHealthMixin",
     "OverlayTextureMixin",
+    "ParticleEngineMixin",
     "PauseScreenMixin",
     "SkyMixin",
     "StaticFovMixin",
