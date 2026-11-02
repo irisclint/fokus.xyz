@@ -1184,6 +1184,12 @@ public final class Lang {
             "Your name shows as another in chat, the tab list and above your head.",
             "Ersatzname",
             "Alias",
+            "Scoreboard",
+            "Scoreboard",
+            "Die Seitenleiste ohne rote Zahlen und mit durchsichtigem Hintergrund.",
+            "The sidebar without the red numbers, with a see-through background.",
+            "Punkte ausblenden",
+            "Hide scores",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

@@ -24,7 +24,7 @@ Einstellungen, Mittelklick Taste belegen, einfach lostippen zum Suchen. Englisch
 - **HUD (über 30 Teile):** Wasserzeichen (auch mit eigenem Text), FPS, CPS, Ping, Koordinaten, Uhr, Speed, Server,
   Keystrokes, Rüstung, Effekte, Target HUD, Kampf-Timer, Session-Statistik (Kills, Tode, K/D), Schadenszahlen, Bogen-Anzeige, Wenig-Leben-Warnung, Combo, Reach, Item-Zähler, Totem Pops, Cooldowns,
   Kompass, Todespunkt (Chat + Pfeil mit Entfernung), Wegpunkt (per Taste B), Spieler in der Nähe, Hunger, Rüstungswarnung, Spielzeit, Tageszeit, Biom, RAM, TPS,
-  Lichtlevel, Haltbarkeit – alles im HUD-Editor verschiebbar.
+  Lichtlevel, Haltbarkeit, Scoreboard ohne rote Zahlen – alles im HUD-Editor verschiebbar.
 - **Chat & Tab:** Ping in der Tab-Liste als farbige Zahl, Zeitstempel vor jeder Nachricht (drei Formate, eigene Klammern und Farbe), gleiche
   Nachrichten hintereinander werden zu einer Zeile mit Zähler gestapelt, Erwähnungen deines Namens
   werden hervorgehoben und pingen, Chat-Makros (Taste sendet z. B. „gg“ oder „/spawn“), Chat-Filter für Werbung und Spam, Namen verstecken (Ersatzname in Chat, Tab-Liste und am Kopf).

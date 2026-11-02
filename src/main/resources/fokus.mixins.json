@@ -41,6 +41,8 @@
     "OverlayTextureMixin",
     "ParticleEngineMixin",
     "PauseScreenMixin",
+    "ScoreboardGuiMixin",
+    "ScoreboardHudMixin",
     "SkyMixin",
     "StaticFovMixin",
     "SwingDurationLegacyMixin",

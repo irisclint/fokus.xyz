@@ -24,6 +24,7 @@ public class FokusMixinPlugin implements IMixinConfigPlugin {
         Map.entry("FireOverlayLegacyMixin", "renderFire"),
         Map.entry("FireOverlayMixin", "submitFire"),
         Map.entry("ClearViewGuiMixin", "extractVignette"),
+        Map.entry("ScoreboardGuiMixin", "displayScoreboardSidebar"),
         Map.entry("BlockOutlineLegacyMixin", "renderHitOutline(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDLnet/minecraft/client/renderer/state/level/BlockOutlineRenderState;IF)V"),
         Map.entry("BlockOutlineMixin", "submitHitOutline(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/rendertype/RenderType;Lnet/minecraft/client/renderer/state/level/BlockOutlineRenderState;IFZ)V"),
         Map.entry("CloudColorLegacyMixin", "render(ILnet/minecraft/client/CloudStatus;FILnet/minecraft/world/phys/Vec3;JF)V"),

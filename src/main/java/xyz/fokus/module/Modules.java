@@ -30,6 +30,7 @@ import xyz.fokus.module.impl.hud.ModuleListModule;
 import xyz.fokus.module.impl.hud.MoreHudModules;
 import xyz.fokus.module.impl.hud.NowPlayingModule;
 import xyz.fokus.module.impl.hud.PotionsModule;
+import xyz.fokus.module.impl.hud.ScoreboardModule;
 import xyz.fokus.module.impl.hud.SessionStatsModule;
 import xyz.fokus.module.impl.hud.SimpleHudModules;
 import xyz.fokus.module.impl.hud.TabPingModule;
@@ -128,6 +129,7 @@ public final class Modules {
         register(new MoreHudModules.Tps());
         register(new MoreHudModules.LightLevel());
         register(new MoreHudModules.HeldDurability());
+        register(new ScoreboardModule());
         register(new SwingModule());
         register(new BlockHitModule());
         register(new ItemViewModule());
