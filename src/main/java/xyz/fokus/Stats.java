@@ -21,6 +21,10 @@ public final class Stats {
     public static long lastReachAt;
     public static LivingEntity target;
     public static long targetAt;
+    /** When you last hit a player, and when you last took damage: the start of a combat tag. */
+    public static long lastHitPlayerAt;
+    public static long lastHitAnyAt;
+    public static long lastHurtAt;
     public static double speed;
     private static int lastHurtTime;
     private static double lastX;
@@ -61,6 +65,10 @@ public final class Stats {
 
             combo++;
             lastHitAt = now;
+            lastHitAnyAt = now;
+            if (entity instanceof net.minecraft.world.entity.player.Player) {
+                lastHitPlayerAt = now;
+            }
             HitmarkerModule.onHit();
             Vec3 eye = p.getEyePosition();
             AABB box = entity.getBoundingBox();
@@ -87,6 +95,7 @@ public final class Stats {
         } else {
             if (p.hurtTime > lastHurtTime) {
                 combo = 0;
+                lastHurtAt = System.currentTimeMillis();
             }
 
             lastHurtTime = p.hurtTime;

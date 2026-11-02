@@ -1052,6 +1052,16 @@ public final class Lang {
             "Overworld",
             "Tod",
             "Death",
+            "Kampf-Timer",
+            "Combat timer",
+            "Zählt den Combat-Tag herunter: so lange nicht ausloggen.",
+            "Counts down the combat tag: do not log out until it ends.",
+            "Nur Treffer gegen Spieler",
+            "Only hits on players",
+            "Auch wenn du getroffen wirst",
+            "Also when you are hit",
+            "Kampf",
+            "Combat",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

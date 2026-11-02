@@ -13,6 +13,7 @@ import xyz.fokus.module.impl.anim.SwingModule;
 import xyz.fokus.module.impl.hud.ArmorModule;
 import xyz.fokus.module.impl.hud.ChatStackModule;
 import xyz.fokus.module.impl.hud.ChatTimestampModule;
+import xyz.fokus.module.impl.hud.CombatTimerModule;
 import xyz.fokus.module.impl.hud.DeathPointModule;
 import xyz.fokus.module.impl.hud.ItemCounterModule;
 import xyz.fokus.module.impl.hud.KeystrokesModule;
@@ -84,6 +85,7 @@ public final class Modules {
         register(new PotionsModule());
         register(new TargetHudModule());
         register(new TotemPopsModule());
+        register(new CombatTimerModule());
         register(new SimpleHudModules.Combo());
         register(new SimpleHudModules.Reach());
         register(new ItemCounterModule());
