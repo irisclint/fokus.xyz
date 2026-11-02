@@ -1134,6 +1134,16 @@ public final class Lang {
             "Song lyrics later",
             "Lyrics-Versatz für diesen Song",
             "Lyrics offset for this song",
+            "Musik-Steuerung",
+            "Music controls",
+            "Musik pausieren und Songs wechseln, ohne das Spiel zu verlassen (Windows).",
+            "Pause music and skip songs without leaving the game (Windows).",
+            "Play/Pause",
+            "Play/Pause",
+            "Nächster Song",
+            "Next song",
+            "Vorheriger Song",
+            "Previous song",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

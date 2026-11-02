@@ -20,6 +20,7 @@ import xyz.fokus.module.impl.hud.DeathPointModule;
 import xyz.fokus.module.impl.hud.ItemCounterModule;
 import xyz.fokus.module.impl.hud.KeystrokesModule;
 import xyz.fokus.module.impl.hud.LowHealthModule;
+import xyz.fokus.module.impl.hud.MediaControlModule;
 import xyz.fokus.module.impl.hud.LyricsModule;
 import xyz.fokus.module.impl.hud.ModuleListModule;
 import xyz.fokus.module.impl.hud.MoreHudModules;
@@ -101,6 +102,7 @@ public final class Modules {
         register(new ItemCounterModule());
         register(new LyricsModule());
         register(new NowPlayingModule());
+        register(new MediaControlModule());
         register(new ChatTimestampModule());
         register(new ChatStackModule());
         register(new TabPingModule());
@@ -147,7 +149,7 @@ public final class Modules {
                 DamageNumbersModule.class, BowChargeModule.class, LowHealthModule.class, SimpleHudModules.Combo.class,
                 SimpleHudModules.Reach.class, MoreHudModules.ArmorWarning.class, MoreHudModules.Cooldowns.class,
                 ArmorModule.class, PotionsModule.class, ItemCounterModule.class);
-        group("Musik & Chat", LyricsModule.class, NowPlayingModule.class, ChatTimestampModule.class, ChatStackModule.class,
+        group("Musik & Chat", LyricsModule.class, NowPlayingModule.class, MediaControlModule.class, ChatTimestampModule.class, ChatStackModule.class,
                 TabPingModule.class);
     }
 
