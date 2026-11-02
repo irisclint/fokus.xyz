@@ -1144,6 +1144,12 @@ public final class Lang {
             "Next song",
             "Vorheriger Song",
             "Previous song",
+            "Chat-Erwähnungen",
+            "Chat mentions",
+            "Nennt dich jemand im Chat, wird die Zeile hervorgehoben und es pingt.",
+            "When someone names you in chat, the line stands out and pings.",
+            "Ton",
+            "Sound",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

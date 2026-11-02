@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import xyz.fokus.module.impl.hud.ChatMentionModule;
 import xyz.fokus.module.impl.hud.ChatStackModule;
 import xyz.fokus.module.impl.hud.ChatTimestampModule;
 
@@ -41,15 +42,15 @@ public abstract class ChatTimestampMixin {
         if (message == null) {
             return null;
         }
-        Component shown = message;
-        ChatStackModule stack = ChatStackModule.active();
         String text = message.getString();
+        Component shown = ChatMentionModule.mark(message, text);
+        ChatStackModule stack = ChatStackModule.active();
         if (stack != null && !text.isBlank() && text.equals(fokus$lastText) && !allMessages.isEmpty()
                 && allMessages.get(0).content() == fokus$lastShown) {
             allMessages.remove(0);
             refreshTrimmedMessages();
             fokus$repeats++;
-            shown = Component.empty().append(message)
+            shown = Component.empty().append(shown)
                     .append(Component.literal(" (x" + fokus$repeats + ")").withColor(stack.color.color() & 0xFFFFFF));
         } else {
             fokus$repeats = 1;
