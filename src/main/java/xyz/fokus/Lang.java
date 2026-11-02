@@ -1062,6 +1062,16 @@ public final class Lang {
             "Also when you are hit",
             "Kampf",
             "Combat",
+            "Session-Statistik",
+            "Session stats",
+            "Kills, Tode und K/D seit du auf dem Server bist.",
+            "Kills, deaths and K/D since you joined the server.",
+            "Nur Spieler-Kills",
+            "Only player kills",
+            "K/D zeigen",
+            "Show K/D",
+            "Session",
+            "Session",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {

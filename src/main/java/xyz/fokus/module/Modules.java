@@ -22,6 +22,7 @@ import xyz.fokus.module.impl.hud.ModuleListModule;
 import xyz.fokus.module.impl.hud.MoreHudModules;
 import xyz.fokus.module.impl.hud.NowPlayingModule;
 import xyz.fokus.module.impl.hud.PotionsModule;
+import xyz.fokus.module.impl.hud.SessionStatsModule;
 import xyz.fokus.module.impl.hud.SimpleHudModules;
 import xyz.fokus.module.impl.hud.TabPingModule;
 import xyz.fokus.module.impl.hud.TargetHudModule;
@@ -86,6 +87,7 @@ public final class Modules {
         register(new TargetHudModule());
         register(new TotemPopsModule());
         register(new CombatTimerModule());
+        register(new SessionStatsModule());
         register(new SimpleHudModules.Combo());
         register(new SimpleHudModules.Reach());
         register(new ItemCounterModule());

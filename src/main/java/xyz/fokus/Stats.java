@@ -25,6 +25,12 @@ public final class Stats {
     public static long lastHitPlayerAt;
     public static long lastHitAnyAt;
     public static long lastHurtAt;
+    /** This connection's kills (players, and anything living) and deaths. */
+    public static int playerKills;
+    public static int kills;
+    public static int deaths;
+    private static int lastKilledId = Integer.MIN_VALUE;
+    private static Object connection;
     public static double speed;
     private static int lastHurtTime;
     private static double lastX;
@@ -86,7 +92,21 @@ public final class Stats {
         }
     }
 
+    /** The server said this player died; see DeathPointMixin. */
+    public static void onDeath() {
+        deaths++;
+    }
+
     public static void tick(Minecraft mc) {
+        // A new connection (another server, or the world reopened) starts the counts again.
+        Object current = mc.getConnection();
+        if (current != connection) {
+            connection = current;
+            playerKills = 0;
+            kills = 0;
+            deaths = 0;
+            lastKilledId = Integer.MIN_VALUE;
+        }
         LocalPlayer p = mc.player;
         if (p == null) {
             havePos = false;
@@ -101,6 +121,16 @@ public final class Stats {
             lastHurtTime = p.hurtTime;
             if (System.currentTimeMillis() - lastHitAt > 3000L) {
                 combo = 0;
+            }
+
+            // A target that dies shortly after your hit counts as your kill, once.
+            if (target != null && target.isDeadOrDying() && target.getId() != lastKilledId
+                    && System.currentTimeMillis() - lastHitAt < 2000L) {
+                lastKilledId = target.getId();
+                kills++;
+                if (target instanceof net.minecraft.world.entity.player.Player) {
+                    playerKills++;
+                }
             }
 
             if (target != null && (target.isRemoved() || System.currentTimeMillis() - targetAt > 8000L)) {

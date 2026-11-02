@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xyz.fokus.Stats;
 import xyz.fokus.module.impl.hud.DeathPointModule;
 
 /**
@@ -19,6 +20,7 @@ public class DeathPointMixin {
     private void fokus$died(ClientboundPlayerCombatKillPacket packet, CallbackInfo ci) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player != null && packet.playerId() == mc.player.getId()) {
+            Stats.onDeath();
             DeathPointModule.onDeath(mc);
         }
     }

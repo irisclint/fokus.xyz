@@ -45,8 +45,8 @@ public class ClearViewModule extends Module {
     /** Whether the fog of this effect (blindness, the warden's darkness) is left out. */
     public static boolean hideEffectFog(Holder<MobEffect> effect) {
         ClearViewModule m = on();
-        return m != null && (m.blindness.on() && effect.is(MobEffects.BLINDNESS)
-                || m.darkness.on() && effect.is(MobEffects.DARKNESS));
+        return m != null && (m.blindness.on() && effect.value() == MobEffects.BLINDNESS.value()
+                || m.darkness.on() && effect.value() == MobEffects.DARKNESS.value());
     }
 
     public static boolean hideTexture(Identifier texture) {
