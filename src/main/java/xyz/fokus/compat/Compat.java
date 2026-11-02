@@ -10,7 +10,9 @@ import java.lang.invoke.MethodHandles.Lookup;
 import java.lang.reflect.Field;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 
 public final class Compat {
     public static final boolean SDL;
@@ -84,6 +86,33 @@ public final class Compat {
             } catch (Throwable var1) {
                 return null;
             }
+        }
+    }
+
+    /** The chat: Gui.getChat() on 26.1, Gui.hud.getChat() from 26.2 on. Null before the game is up. */
+    public static ChatComponent chat() {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc == null || mc.gui == null) {
+            return null;
+        }
+        Object holder = mc.gui;
+        try {
+            try {
+                return (ChatComponent) holder.getClass().getMethod("getChat").invoke(holder);
+            } catch (NoSuchMethodException e) {
+                holder = holder.getClass().getField("hud").get(holder);
+                return (ChatComponent) holder.getClass().getMethod("getChat").invoke(holder);
+            }
+        } catch (ReflectiveOperationException e) {
+            return null;
+        }
+    }
+
+    /** A line in the chat that only this player sees. */
+    public static void say(Component message) {
+        ChatComponent chat = chat();
+        if (chat != null) {
+            chat.addClientSystemMessage(message);
         }
     }
 

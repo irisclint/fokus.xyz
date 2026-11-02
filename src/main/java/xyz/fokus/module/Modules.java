@@ -13,6 +13,7 @@ import xyz.fokus.module.impl.anim.SwingModule;
 import xyz.fokus.module.impl.hud.ArmorModule;
 import xyz.fokus.module.impl.hud.ChatStackModule;
 import xyz.fokus.module.impl.hud.ChatTimestampModule;
+import xyz.fokus.module.impl.hud.DeathPointModule;
 import xyz.fokus.module.impl.hud.ItemCounterModule;
 import xyz.fokus.module.impl.hud.KeystrokesModule;
 import xyz.fokus.module.impl.hud.LyricsModule;
@@ -92,6 +93,7 @@ public final class Modules {
         register(new ChatStackModule());
         register(new TabPingModule());
         register(new MoreHudModules.Compass());
+        register(new DeathPointModule());
         register(new MoreHudModules.NearbyPlayers());
         register(new MoreHudModules.Hunger());
         register(new MoreHudModules.ArmorWarning());

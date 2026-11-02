@@ -1037,7 +1037,21 @@ public final class Lang {
             "Treffer-Farbe",
             "Hit colour",
             "Getroffene Spieler und Mobs leuchten in deiner Farbe statt rot.",
-            "Players and mobs you hit flash in your colour instead of red."
+            "Players and mobs you hit flash in your colour instead of red.",
+            "Todespunkt",
+            "Death point",
+            "Wo du zuletzt gestorben bist: im Chat und als Pfeil mit Entfernung.",
+            "Where you last died: in the chat and as an arrow with the distance.",
+            "Im Chat melden",
+            "Tell in chat",
+            "Löschen wenn erreicht",
+            "Clear when reached",
+            "Gestorben bei",
+            "Died at",
+            "Oberwelt",
+            "Overworld",
+            "Tod",
+            "Death",
         };
 
         for (int i = 0; i + 1 < pairs.length; i += 2) {
